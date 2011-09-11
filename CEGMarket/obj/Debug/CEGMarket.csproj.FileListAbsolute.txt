@@ -18,3 +18,5 @@ D:\Dropbox\CG3002 Group\Windows App\CEGMarket v0.01\CEGMarket\obj\Debug\CEGMarke
 D:\Dropbox\CG3002 Group\Windows App\CEGMarket v0.01\CEGMarket\obj\Debug\CEGMarket.g.resources
 D:\Dropbox\CG3002 Group\Windows App\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.exe
 D:\Dropbox\CG3002 Group\Windows App\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.pdb
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\CEGMarket.exe
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\CEGMarket.pdb
