@@ -8,6 +8,39 @@
 	Width="640" Height="480">
 
 	<Grid x:Name="LayoutRoot">
-		<Label Content="CEG Hypermarket&#xd;&#xa;" Margin="208,168,152.227,145.08"/>
-	</Grid>
+        <TabControl Style="{DynamicResource SimpleTabControl}">
+        	<TabItem Header="Product" Style="{DynamicResource SimpleTabItem}" Height="21.96" VerticalAlignment="Top">
+        		<Grid Background="#FFE5E5E5">
+        			<Button Content="Update Product Database" Height="23" HorizontalAlignment="Left" Margin="6,8.04,0,0" x:Name="button2_Copy" VerticalAlignment="Top" Width="143" />
+        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="6,52.04,0,0" x:Name="button2_Copy4" VerticalAlignment="Top" Width="143" />
+        		</Grid>
+        	</TabItem>
+        	<TabItem Header="Member" Style="{DynamicResource SimpleTabItem}">
+        		<Grid Background="#FFE5E5E5">
+        			<Button Content="Add Member" HorizontalAlignment="Left" Margin="79,162.04,0,0" VerticalAlignment="Top" Width="90"/>
+        			<TextBlock HorizontalAlignment="Left" Margin="8,27.04,0,0" TextWrapping="Wrap" Text="NRIC" VerticalAlignment="Top"/>
+        			<TextBlock HorizontalAlignment="Left" Margin="8,128.92,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
+        			<TextBlock HorizontalAlignment="Left" Margin="8,62,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+        			<TextBlock HorizontalAlignment="Left" Margin="8,93.96,0,0" TextWrapping="Wrap" Text="Mobile" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+        			<TextBox HorizontalAlignment="Left" Margin="59,27.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+        			<TextBox HorizontalAlignment="Left" Margin="59,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+        			<TextBox HorizontalAlignment="Left" Margin="59,93.96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+        			<TextBox HorizontalAlignment="Left" Margin="59,126.92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+        			<TextBox Margin="296,27.04,183,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        			<Button Content="Search Member" HorizontalAlignment="Right" Margin="0,27.04,50,0" VerticalAlignment="Top" Width="101"/>
+        			<ListBox Height="100" Margin="296,62,50,0" VerticalAlignment="Top"/>
+        		</Grid>
+        	</TabItem>
+        	<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
+        		<Grid Background="#FFE5E5E5">
+        			<Button Height="23" Margin="10,8.04,0,0" x:Name="button1" VerticalAlignment="Top" Content="Check Serial Connection" HorizontalAlignment="Left" Width="143" />
+        			<Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
+        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="10,116.04,0,0" x:Name="button2_Copy1" VerticalAlignment="Top" Width="143" />
+        			<Button Content="Send data to server" Height="23" Margin="10,64.04,0,0" x:Name="button2_Copy2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" d:LayoutOverrides="HorizontalAlignment" />
+        			<Button Content="Request data from server" Margin="10,91.04,0,0" x:Name="button2_Copy3" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" />
+        			<TextBox Margin="182.554,9.08,44.446,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="129.96"/>
+        		</Grid>
+        	</TabItem>
+        </TabControl>
+    </Grid>
 </Window>

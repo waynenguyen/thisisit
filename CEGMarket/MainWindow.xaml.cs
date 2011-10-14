@@ -21,8 +21,9 @@ namespace CEGMarket
 		public MainWindow()
 		{
 			this.InitializeComponent();
-
 			// Insert code required on object creation below this point.
+            CEGMarketSystem CEGSystem = new CEGMarketSystem();
+            CEGSystem.CalculateProductProfit("123");
 		}
 
 	}
