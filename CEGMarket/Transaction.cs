@@ -9,7 +9,17 @@ namespace Transaction_Class
     {
         private string _id, _date, _member_id;
         private double _money_receive, _money_change, _total_price;
-        private Dictionary<string, int> _shopping_bag;
+        private Dictionary<string, Dictionary<int,double>> _shopping_bag;
+        public Transaction(string id, string date, double money_receive, double money_change, double total_price)
+        {
+            _id = id;
+            _date = date;
+            _member_id = null;
+            _money_receive = money_receive;
+            _money_change = money_change;
+            _total_price = total_price;
+            _shopping_bag = new Dictionary<string, Dictionary<int, double>>();
+        }
         public Transaction(string id, string date, string member_id, double money_receive, double money_change, double total_price)
         {
             _id = id;
@@ -18,6 +28,7 @@ namespace Transaction_Class
             _money_receive = money_receive;
             _money_change = money_change;
             _total_price = total_price;
+            _shopping_bag = new Dictionary<string, Dictionary<int, double>>();
         }
         // getters
         public String getId()
@@ -30,6 +41,7 @@ namespace Transaction_Class
         }
         public String getMemberId()
         {
+            if (_member_id == null) return null;
             return _member_id;
         }
         public double getMoneyReceive()
@@ -44,7 +56,7 @@ namespace Transaction_Class
         {
             return _total_price;
         }
-        public Dictionary<string, int> getShoppingBag()
+        public Dictionary<string, Dictionary<int,double>> getShoppingBag()
         {
             return _shopping_bag;
         }
@@ -73,9 +85,11 @@ namespace Transaction_Class
         {
             _total_price = amount;
         }
-        public void insertProductIntoShoppingBag(string productId, int amount)
+        public void insertProductIntoShoppingBag(string productId, int amount, double totalPrice)
         {
-            _shopping_bag.Add(productId, amount);
+            Dictionary<int, double> amountPrice = new Dictionary<int, double>();
+            amountPrice.Add(amount, totalPrice);
+            _shopping_bag.Add(productId, amountPrice);
         }
     }
 }
