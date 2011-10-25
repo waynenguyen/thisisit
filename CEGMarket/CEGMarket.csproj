@@ -61,7 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="CEGMarketSystem.cs" />
     <Compile Include="Member.cs" />
-    <Compile Include="DBInterface.cs" />
+    <Compile Include="LocalDBInterface.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
