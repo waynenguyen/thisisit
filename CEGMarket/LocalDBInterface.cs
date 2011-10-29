@@ -37,6 +37,9 @@ namespace CEGMarket
         }
 
         // PRODUCT RELATED INTERFACE
+
+        // TODO : add reset is_sold_today and number_sold_today
+
         public static void addProduct(Product newProduct)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
@@ -74,6 +77,45 @@ namespace CEGMarket
             command.ExecuteNonQuery();
         }
 
+        public static List<Product> getProductSoldToday()
+        {
+            List<Product> productSellInfo = new List<Product>();
+            MySqlCommand command = l_DBConn.CreateCommand();
+            String query = null;
+
+            query = "SELECT barcode FROM product WHERE is_sold_today='TRUE'";
+            command.CommandText = query;
+            MySqlDataReader reader = command.ExecuteReader();
+            List<string> barcode_list = new List<string>();
+            while (reader.Read())
+            {
+                barcode_list.Add(reader.GetValue(0).ToString());
+            }
+            reader.Close();
+            for (int i = 0; i < barcode_list.Count; i++)
+            {
+                productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
+            }
+            return productSellInfo;
+        }
+
+        public static void addProductNumberSoldToday(string barcode, int number_sold_today)
+        {
+            MySqlCommand command = l_DBConn.CreateCommand();
+            String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
+            command.CommandText = query;
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int number_s_today = (int)Int64.Parse(reader.GetValue(7).ToString());
+                number_sold_today += number_s_today;
+            }
+            reader.Close();
+            query = "UPDATE product SET number_sold_today='" + number_sold_today.ToString() +
+                            "WHERE barcode ='" + barcode + "'";
+            command.CommandText = query;
+            command.ExecuteNonQuery();
+        }
         public static void setProductNumberInStock(string barcode, int number_in_stock)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
@@ -82,6 +124,7 @@ namespace CEGMarket
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
+
 
         public static void addProductNumberInStock(string barcode, int added_number_in_stock)
         {
@@ -101,6 +144,8 @@ namespace CEGMarket
             command.ExecuteNonQuery();
         }
 
+
+
         public static void removeProductNumberInStock(string barcode, int removed_number_in_stock)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
@@ -114,7 +159,7 @@ namespace CEGMarket
             }
             reader.Close();
             query = "UPDATE product SET number_in_stock='" + removed_number_in_stock.ToString() +
-                            "WHERE barcode ='" + barcode + "'";
+                            "', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
@@ -156,6 +201,9 @@ namespace CEGMarket
 
                 // remove number in stock of product
                 removeProductNumberInStock(productId,amountPrice.ElementAt(i).Key);
+
+                // add number of product sold today
+
             }
         }
 
