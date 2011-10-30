@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using Product_Class;
-using Json;
-using Newtonsoft;
+
 namespace CEGMarket
 {
     

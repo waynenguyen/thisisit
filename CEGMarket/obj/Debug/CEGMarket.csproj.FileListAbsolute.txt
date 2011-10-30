@@ -47,8 +47,3 @@ F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.write.1
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.exe
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.pdb
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data.dll
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Json.dll
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.dll
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Json.pdb
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.xml
