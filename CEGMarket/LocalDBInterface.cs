@@ -62,7 +62,10 @@ namespace CEGMarket
                 string category = reader.GetValue(3).ToString();
                 double price =  Double.Parse(reader.GetValue(4).ToString());
                 string manufacturer = reader.GetValue(5).ToString();
-                return (new Product(barcode, name, category, manufacturer, price, number_in_stock));
+                int number_sold_today = (int) Int64.Parse(reader.GetValue(7).ToString());
+                Product newProduct = new Product(barcode, name, category, manufacturer, price, number_in_stock);
+                newProduct.setNumberSoldToday(number_sold_today);
+                return (newProduct);
             }
             return null;
         }

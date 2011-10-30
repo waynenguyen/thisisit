@@ -10,7 +10,7 @@ namespace Product_Class
         private string _barcode, _name, _category, _manufacturer;
         private double _price;
         private int _number_in_stock;
-
+        private int _number_sold_today;
         public Product(string barc, string name, string category, string manufacturer, double price, int number_in_stock)
         {
             _barcode = barc;
@@ -19,6 +19,7 @@ namespace Product_Class
             _manufacturer = manufacturer;
             _price = price;
             _number_in_stock = number_in_stock;
+            _number_sold_today = 0;
         }
 
         public string getBarcode()
@@ -45,7 +46,10 @@ namespace Product_Class
         {
             return _number_in_stock;
         }
-
+        public int getNumberSoldToday()
+        {
+            return _number_sold_today;
+        }
         // setters
         public void setBarcode(string barcode)
         {
@@ -70,6 +74,10 @@ namespace Product_Class
         public void setNumberInStock(int num)
         {
             _number_in_stock = num;
+        }
+        public void setNumberSoldToday(int num)
+        {
+            _number_sold_today = num;
         }
 
     }
