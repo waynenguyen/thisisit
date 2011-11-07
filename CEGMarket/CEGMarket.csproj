@@ -78,7 +78,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="serialcon.cs" />
+    <Compile Include="SerialConnection.cs" />
     <Compile Include="Transaction.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

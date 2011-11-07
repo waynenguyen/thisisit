@@ -41,6 +41,15 @@
         			<TextBox Margin="182.554,9.08,44.446,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="129.96"/>
         		</Grid>
         	</TabItem>
+        	<TabItem Header="Serial Connection" Margin="0">
+        		<Grid Background="#FFE5E5E5">
+        			
+        			<Button Content="Start Reading" Margin="231,0,284,136.04" VerticalAlignment="Bottom" Height="25.96" Click="ReadSerialPort"/>
+        			<TextBox x:Name="statusbox" TextWrapping="Wrap" Margin="167,68.04,197.447,175.04" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+             ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
+        			<Label Content="Communication Message" HorizontalAlignment="Left" Margin="167,42.08,0,0" VerticalAlignment="Top"/>
+        		</Grid>
+        	</TabItem>
         </TabControl>
     </Grid>
 </Window>
