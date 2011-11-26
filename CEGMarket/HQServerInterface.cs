@@ -32,8 +32,11 @@ namespace CEGMarket
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             string sJSON = oSerializer.Serialize(finalReport);
 
+
+            /* HTTPPost example
             PostSubmitter post = new PostSubmitter();
-            post.Url = "http://ec2-50-17-68-237.compute-1.amazonaws.com/2102/post/14";
+            //post.Url = "http://ec2-50-17-68-237.compute-1.amazonaws.com/2102/post/14";
+            post.Url = "http://3B.cegmarket.appspot.com/store/update?id=11001&from=&to";
             post.PostItems.Add("content", sJSON);
             //post.PostItems.Add("rel_code", "1102");
             //post.PostItems.Add("FREE_TEXT", "c# jobs");
@@ -41,7 +44,11 @@ namespace CEGMarket
             post.Type = PostSubmitter.PostTypeEnum.Post;
 
             string result = post.Post();
-          
+            */
+
+            // TODO:
+
+
         }
 
 

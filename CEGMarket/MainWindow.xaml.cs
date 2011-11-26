@@ -25,10 +25,17 @@ namespace CEGMarket
 			// Insert code required on object creation below this point.
             CEGMarketSystem CEGSystem = new CEGMarketSystem();
             CEGSystem.CalculateProductProfit("123");
-           
-           
 
-
+            /* HTTPGet example
+            HTTPGet req = new HTTPGet();
+            req.Request("http://ec2-50-17-68-237.compute-1.amazonaws.com/RTB/listpurchase/123");
+            Console.WriteLine(req.StatusLine);
+            Console.WriteLine(req.ResponseTime);
+            */
+            HTTPGet req = new HTTPGet();
+            req.Request("http://3B.cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
+            Console.WriteLine(req.StatusLine);
+            Console.WriteLine(req.ResponseTime);
 		}
 
 	}

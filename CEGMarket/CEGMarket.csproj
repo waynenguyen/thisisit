@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CEGMarketSystem.cs" />
+    <Compile Include="GetRequest.cs" />
     <Compile Include="HQServerInterface.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="LocalDBInterface.cs" />
