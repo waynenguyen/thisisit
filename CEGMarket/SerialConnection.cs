@@ -50,7 +50,7 @@ namespace CEGMarket
         { 
             //Do something with it
         }
-        //public static void createSerialConnection()
+        public static void createSerialConnection()
         {
             // TODO: Add event handler implementation here.
             //bool _continue;

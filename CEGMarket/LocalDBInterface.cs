@@ -43,7 +43,7 @@ namespace CEGMarket
         public static void addProduct(Product newProduct)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
-            String query = "INSERT INTO product VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+            String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
                             "','" + newProduct.getName() + "','" + newProduct.getCategory() +
                             "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
             command.CommandText = query;
@@ -65,17 +65,19 @@ namespace CEGMarket
                 int number_sold_today = (int) Int64.Parse(reader.GetValue(7).ToString());
                 Product newProduct = new Product(barcode, name, category, manufacturer, price, number_in_stock);
                 newProduct.setNumberSoldToday(number_sold_today);
+                reader.Close();
                 return (newProduct);
             }
+            reader.Close();
             return null;
         }
         public static void modifyProduct(Product changedProduct)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "UPDATE product SET number_in_stock='" + changedProduct.getNumberInStock() +
-                            "' name='" + changedProduct.getName() + "' category='" + changedProduct.getCategory() +
-                            "' price='" + changedProduct.getPrice() + "' manufacturer='" + changedProduct.getManufacturer() +
-                            "WHERE barcode ='" + changedProduct.getBarcode() + "'";
+                            "' ,name='" + changedProduct.getName() + "' ,category='" + changedProduct.getCategory() +
+                            "' ,price='" + changedProduct.getPrice() + "' ,manufacturer='" + changedProduct.getManufacturer() +
+                            "' WHERE barcode ='" + changedProduct.getBarcode() + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
@@ -115,7 +117,7 @@ namespace CEGMarket
             }
             reader.Close();
             query = "UPDATE product SET number_sold_today='" + number_sold_today.ToString() +
-                            "WHERE barcode ='" + barcode + "'";
+                            "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
@@ -123,7 +125,7 @@ namespace CEGMarket
         {
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "UPDATE product SET number_in_stock='" + number_in_stock +
-                            "WHERE barcode ='" + barcode + "'";
+                            "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
@@ -142,7 +144,7 @@ namespace CEGMarket
             }
             reader.Close();
             query = "UPDATE product SET number_in_stock='" + added_number_in_stock.ToString() +
-                            "WHERE barcode ='" + barcode + "'";
+                            "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
         }
@@ -158,7 +160,7 @@ namespace CEGMarket
             while (reader.Read())
             {
                 int number_in_stock = (int)Int64.Parse(reader.GetValue(1).ToString());
-                removed_number_in_stock -= number_in_stock;
+                removed_number_in_stock = number_in_stock - removed_number_in_stock;
             }
             reader.Close();
             query = "UPDATE product SET number_in_stock='" + removed_number_in_stock.ToString() +
@@ -238,6 +240,7 @@ namespace CEGMarket
                 double total_price = Double.Parse(reader.GetValue(3).ToString());
                 transaction.insertProductIntoShoppingBag(product_id, amount, total_price);
             }
+            reader.Close();
             return transaction;
         }
 
