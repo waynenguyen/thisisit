@@ -128,7 +128,7 @@ namespace CEGMarket
             command.ExecuteNonQuery();
         }
 
-
+        // means set current number_in_stock += added_number_in_stock
         public static void addProductNumberInStock(string barcode, int added_number_in_stock)
         {
             MySqlCommand command = l_DBConn.CreateCommand();
@@ -250,8 +250,8 @@ namespace CEGMarket
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
-            
-            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE p.barcode = r.product_id AND t.id = r.transaction_id AND t.date ='" + dayValue + "'";
+
+            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE p.barcode = r.product_id AND t.id = r.transaction_id AND t.date ='" + dayValue + "' AND t.status='COMPLETED'";
             command.CommandText = query;
             MySqlDataReader reader = command.ExecuteReader();
             List<string> barcode_list = new List<string>();
@@ -314,7 +314,7 @@ namespace CEGMarket
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
             
-            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE t.date='" + dayValue + "' AND p.category='" + categoryName + "' AND r.product_id = p.barcode AND r.transaction_id = t.id"; 
+            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE t.date='" + dayValue + "' AND p.category='" + categoryName + "' AND r.product_id = p.barcode AND r.transaction_id = t.id AND t.status='COMPLETED'"; 
             command.CommandText = query;
             MySqlDataReader reader = command.ExecuteReader();
             List<string> barcode_list = new List<string>();
@@ -367,9 +367,9 @@ namespace CEGMarket
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
-            
-            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE t.date='" + dayValue + "' AND p.manufacturer='" + manufacturerName + "' AND r.product_id = p.barcode AND r.transaction_id = t.id"; 
-            command.CommandText = query;
+
+            query = "SELECT distinct barcode FROM product p, transaction t, product_transaction_relation r WHERE t.date='" + dayValue + "' AND p.manufacturer='" + manufacturerName + "' AND r.product_id = p.barcode AND r.transaction_id = t.id AND t.status='COMPLETED'"; 
+            command.CommandText = query;    
             MySqlDataReader reader = command.ExecuteReader();
             List<string> barcode_list = new List<string>();
             while (reader.Read())
