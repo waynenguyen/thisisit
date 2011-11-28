@@ -4,16 +4,21 @@
 winexe
 C#
 .cs
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\
 CEGMarket
 none
 false
 DEBUG;TRACE
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\App.xaml
+D:\Dropbox\thisisit\CEGMarket\App.xaml
 2-1509017259
 
+<<<<<<< HEAD
 142043341851
 16-1129119110
+=======
+13-1213780461
+16-1516690343
+>>>>>>> e84e623461b2b17c342eb92b2cb7f0475a47b07c
 MainWindow.xaml;Simple Styles.xaml;
 
 False
