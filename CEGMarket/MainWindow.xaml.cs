@@ -37,7 +37,7 @@ namespace CEGMarket
 
 		private void ReadSerialPort(object sender, System.Windows.RoutedEventArgs e)
 		{
-            SerialConnection.createSerialConnection();
+            //SerialConnection.createSerialConnection();
         }
 
         private void openSerialPort(SerialPort port) { 

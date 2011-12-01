@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO.Ports;
 using System.Threading;
-
+using Transaction_Class;
+using Product_Class;
 namespace CEGMarket
 {
     static class SerialConnection
@@ -14,7 +15,11 @@ namespace CEGMarket
         /****************************************************************************************************/
         //static bool _continue;
         static SerialPort _serialPort;
-
+        static List<Byte> portBuffer = new List<Byte>();
+        static string RxString;
+        static bool TransactionInProgress=false;
+        static Transaction tempTransaction;
+        static Product tempProduct;
         /****************************************************************************************************/
         // Functions
         /****************************************************************************************************/
@@ -37,9 +42,9 @@ namespace CEGMarket
         {
             _serialPort.Close();
         }
-        public static void WriteToSerialPort(byte[] bytes)
+        public static void WriteToSerialPort(byte[] bytes,int num)
         {
-            _serialPort.Write(bytes,0,4);   // not sure what Offset 0 means
+            _serialPort.Write(bytes,0,num);   // start from byte[0], for num bytes
         
         }
         public static void openCashRegister(string id)
@@ -47,60 +52,44 @@ namespace CEGMarket
             _serialPort.Write(new byte[] { 0x46 }, 0, 1);
         }
         public static void DataReceived(object sender,SerialDataReceivedEventArgs e)
-        { 
-            //Do something with it
-        }
-        //public static void createSerialConnection()
         {
-            // TODO: Add event handler implementation here.
-            //bool _continue;
-            //SerialPort _serialPort;
-
-            ////string name;
-            ////string message;
-            //StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
-            ////Thread readThread = new Thread(Read);
-
-            //// Create a new SerialPort object with default settings.
-            //_serialPort = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
-            ////_serialPort = new SerialPort();
-
-            //// Allow the user to set the appropriate properties.
-            ////_serialPort.PortName = SetPortName(_serialPort.PortName);
-            ////_serialPort.BaudRate = SetPortBaudRate(_serialPort.BaudRate);
-            ////_serialPort.Parity = SetPortParity(_serialPort.Parity);
-            ////_serialPort.DataBits = SetPortDataBits(_serialPort.DataBits);
-            ////_serialPort.StopBits = SetPortStopBits(_serialPort.StopBits);
-            ////_serialPort.Handshake = SetPortHandshake(_serialPort.Handshake);
-
-            //// Set the read/write timeouts
-            //_serialPort.ReadTimeout = 500;
-            //_serialPort.WriteTimeout = 500;
-
-            //_serialPort.Open();
-            //_continue = true;
-            //readThread.Start();
-            int n = 0;
-            //name = "TuanVu";
-            while (n < 1)
+            // Get the number of bytes available to read.
+            while (true)
             {
-                try
+                int numberOfBytesToRead = _serialPort.BytesToRead;
+                if (numberOfBytesToRead <= 0) break;
+                Byte[] newReceivedData = new Byte[numberOfBytesToRead];// Create a byte array large enough to hold the bytes to be read.
+                _serialPort.Read(newReceivedData, 0, numberOfBytesToRead);// Read the bytes into the byte array.
+                portBuffer.AddRange(newReceivedData);// Add the bytes to the end of the list.
+                Thread.Sleep(30);// in ms; 9600bps = 1B/ms
+            }
+            List<Byte> portBufferCopy = new List<Byte>(portBuffer);
+            if (portBuffer.Count == 1)
+            {
+                //Check if it is Start Signal(1001 1011)
+                if (portBuffer[0] == 0x9B)//1001 1011?
                 {
-                    string message2 = _serialPort.ReadLine();
-                    if (message2 != "")
-                    {
-                        //statusbox.Text += DateTime.Now.ToString("HH:mm:ss tt");
-                        //statusbox.Text += message2;
-                        n++;
-                    }
-                    //Console.WriteLine(message2);
+                    TransactionInProgress = true;
+                    //Get Barcode from serial
+                    string barcode="333333";
+                    //Get quantity from serial
+                    string quantity="0";
+                    //Get price from Local DB
+                    tempProduct = LocalDBInterface.getProduct(barcode);
+                    double price = tempProduct.getPrice();
+                    //Create Transaction
+                    //Return subtotal
+                    
                 }
-                catch (TimeoutException) { }
             }
 
-            //readThread.Join();
-            _serialPort.Close();
+            RxString = System.Text.ASCIIEncoding.ASCII.GetString(portBuffer.ToArray());
+            
+            //While loop Receive Barcode, Receive Quantity, Create Transaction, ReturnSubtotal
+            //check for total signal (1001 1100)
+
         }
+
     }
             
 }
