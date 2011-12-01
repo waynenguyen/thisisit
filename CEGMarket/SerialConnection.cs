@@ -52,13 +52,6 @@ namespace CEGMarket
             _serialPort.Write(new byte[] { 0x46 }, 0, 1);
         }
         public static void DataReceived(object sender,SerialDataReceivedEventArgs e)
-<<<<<<< HEAD
-=======
-        { 
-            //Do something with it
-        }
-        public static void createSerialConnection()
->>>>>>> 74329fe673584751998b1979fc6d111702050f50
         {
             // Get the number of bytes available to read.
             while (true)
