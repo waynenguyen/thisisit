@@ -98,7 +98,6 @@ namespace CEGMarket
                 rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer.Please install a COM Port and restart this app.\n");
                 //this.Close();
             }
-            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.connectLCD(129));
         }
         private void openSerialPort()
         {
