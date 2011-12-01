@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.Threading;
 using Transaction_Class;
 using Product_Class;
+using System.Windows;
 namespace CEGMarket
 {
     static class SerialConnection
@@ -34,13 +35,19 @@ namespace CEGMarket
             _serialPort.ReadTimeout = 500;
             _serialPort.WriteTimeout = 500;
 
-            _serialPort.Open();
+            try
+            {
+                    if (!_serialPort.IsOpen) _serialPort.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening/writing to serial port: " + ex.Message, "Error!");
+            }
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-            //readThread.Start();
         }
         public static void closeSerialConnection()
         {
-            _serialPort.Close();
+            if (_serialPort.IsOpen) _serialPort.Close();
         }
         public static void WriteToSerialPort(byte[] bytes,int num)
         {
@@ -71,6 +78,8 @@ namespace CEGMarket
                 if (portBuffer[0] == 0x9B)//1001 1011?
                 {
                     TransactionInProgress = true;
+                    //reset transaction
+                    tempTransaction = new Transaction();
                     //Get Barcode from serial
                     string barcode="333333";
                     //Get quantity from serial
@@ -81,8 +90,15 @@ namespace CEGMarket
                     //Create Transaction
                     tempTransaction.insertProductIntoShoppingBag(barcode, 1, 12);
                     //Return subtotal
-                    
-                    
+                    _serialPort.Write(new byte[] { 0x0A, 0xE2, 0xFF }, 0, 3);//need to change data.
+                }
+                //Check for End Transaction
+                if (portBuffer[0] == 0x9E || portBuffer[7] == 0x9E)   //1001 1110?
+                {
+                    LocalDBInterface.addTransaction(tempTransaction);
+                    tempTransaction = new Transaction();
+                
+                
                 }
             }
 
