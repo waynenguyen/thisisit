@@ -70,7 +70,15 @@ namespace CEGMarket
 
         }
 
+        public static void sync()
+        {
+            HTTPGet req = new HTTPGet();
+            req.Request("http://cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
+            Console.WriteLine(req.StatusLine);
+            Console.WriteLine(req.ResponseTime);
 
+
+        }
 
 
 

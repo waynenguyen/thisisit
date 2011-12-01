@@ -10,6 +10,16 @@ namespace Transaction_Class
         private string _id, _date, _member_id;
         private double _money_receive, _money_change, _total_price;
         private Dictionary<string, Dictionary<int,double>> _shopping_bag;
+        public Transaction()
+        {
+            _id = null;
+            _date = null;
+            _member_id = null;
+            _money_receive = 0;
+            _money_change = 0;
+            _total_price = 0;
+            _shopping_bag = new Dictionary<string, Dictionary<int, double>>();
+        }
         public Transaction(string id, string date, double money_receive, double money_change, double total_price)
         {
             _id = id;

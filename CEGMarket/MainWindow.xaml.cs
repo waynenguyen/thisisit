@@ -63,7 +63,8 @@ namespace CEGMarket
             //req.Request("http://3B.cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
             //Console.WriteLine(req.StatusLine);
             //Console.WriteLine(req.ResponseTime);
-            HQServerInterface.sendTodayReport();
+            //HQServerInterface.sendTodayReport();
+
 		}
 
 		private void ReadSerialPort(object sender, System.Windows.RoutedEventArgs e)
