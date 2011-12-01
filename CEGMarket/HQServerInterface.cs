@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using Product_Class;
-using Json;
+//using Json;
 using Newtonsoft.Json;
 namespace CEGMarket
 {
@@ -102,8 +102,8 @@ namespace CEGMarket
                 end = end + 10000;
                 Console.WriteLine(req.StatusLine);
                 Console.WriteLine(req.ResponseTime);                
-                Json.JsonArray data = JsonParser.Deserialize(req.ResponseBody);
-                System.Collections.IEnumerator ite = data.GetEnumerator();
+                //Json.JsonArray data = JsonParser.Deserialize(req.ResponseBody);
+                //System.Collections.IEnumerator ite = data.GetEnumerator();
                 string jsonString = req.ResponseBody;
                 jsonString = jsonString.Replace("id", "barcode");
                 jsonString = jsonString.Replace("brand", "manufacturer");
