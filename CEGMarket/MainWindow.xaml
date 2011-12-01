@@ -48,15 +48,19 @@
         			<TextBox x:Name="statusbox" TextWrapping="Wrap" Margin="8,33.96,296.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
              ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="60.96" VerticalAlignment="Top"/>
         			<Label Content="Communication Message" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,112,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="8,170.96,296.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+        			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,98.92,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+        			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="12,154.84,292.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
         				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="26.96" VerticalAlignment="Top"/>
-        			<Button Content="Convert to Byte" Margin="0,170.96,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="ConvertToByte" />
-        			<ComboBox HorizontalAlignment="Left" Margin="108.637,141.96,0,0" VerticalAlignment="Top" Width="88"/>
-        			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="8,137.96,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<ComboBox x:Name="cmbPortName" HorizontalAlignment="Left" Margin="108.637,0,0,161.12" VerticalAlignment="Bottom" Width="88"/>
-        			<Label Content="Serial Port" HorizontalAlignment="Left" Margin="8,0,0,161.12" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment"/>
-        			<Button Content="Get Ports" Margin="222,0,0,161.12" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="GetSerialPorts"/>
+        			<Button Content="Convert to Byte" Margin="0,155.84,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="ConvertToByte" />
+        			<ComboBox HorizontalAlignment="Left" Margin="112.637,128.88,0,0" VerticalAlignment="Top" Width="88"/>
+        			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="12,124.88,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+        			<ComboBox x:Name="cmbPortName" Margin="301,128.88,225,0" VerticalAlignment="Top"/>
+        			<Label Content="Serial Port" HorizontalAlignment="Left" Margin="232.98,124.88,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+        			<Button Content="Get Ports" Margin="0,129.88,120.5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="GetSerialPorts"/>
+        			<RichTextBox x:Name="rtbTxData" Margin="12,199.04,8,31">
+        				<FlowDocument/>
+        			</RichTextBox>
+        			<GroupBox Header="GroupBox" HorizontalAlignment="Right" Margin="0,12,120.5,0" VerticalAlignment="Top" Height="83.92" Width="159.5"/>
         		</Grid>
         	</TabItem>
         </TabControl>
