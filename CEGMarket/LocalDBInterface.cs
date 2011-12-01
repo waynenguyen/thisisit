@@ -53,11 +53,15 @@ namespace CEGMarket
         {
             openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
-            String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
-                            "','" + newProduct.getName() + "','" + newProduct.getCategory() +
-                            "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
-            command.CommandText = query;
-            command.ExecuteNonQuery();
+            try
+            {
+                String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+                                "','" + newProduct.getName() + "','" + newProduct.getCategory() +
+                                "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+            }
+            catch { };
             closeConnection();
         }
 
@@ -68,11 +72,15 @@ namespace CEGMarket
             for (int i = 0; i < listProduct.Count; i++)
             {
                 Product newProduct = listProduct.ElementAt(i);
-                String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
-                                "','" + newProduct.getName() + "','" + newProduct.getCategory() +
-                                "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
-                command.CommandText = query;
-                command.ExecuteNonQuery();
+                try
+                {
+                    String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+                                    "','" + newProduct.getName() + "','" + newProduct.getCategory() +
+                                    "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                }
+                catch { };
             }
             closeConnection();
         }
@@ -104,12 +112,16 @@ namespace CEGMarket
         {
             openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
-            String query = "UPDATE product SET number_in_stock='" + changedProduct.getNumberInStock() +
-                            "' ,name='" + changedProduct.getName() + "' ,category='" + changedProduct.getCategory() +
-                            "' ,price='" + changedProduct.getPrice() + "' ,manufacturer='" + changedProduct.getManufacturer() +
-                            "' WHERE barcode ='" + changedProduct.getBarcode() + "'";
-            command.CommandText = query;
-            command.ExecuteNonQuery();
+            try
+            {
+                String query = "UPDATE product SET number_in_stock='" + changedProduct.getNumberInStock() +
+                                "' ,name='" + changedProduct.getName() + "' ,category='" + changedProduct.getCategory() +
+                                "' ,price='" + changedProduct.getPrice() + "' ,manufacturer='" + changedProduct.getManufacturer() +
+                                "' WHERE barcode ='" + changedProduct.getBarcode() + "'";
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+            }
+            catch { };
             closeConnection();
         }
 
