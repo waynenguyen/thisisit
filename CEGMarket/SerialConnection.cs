@@ -81,8 +81,7 @@ namespace CEGMarket
                     //Create Transaction
                     tempTransaction.insertProductIntoShoppingBag(barcode, 1, 12);
                     //Return subtotal
-                    
-                    
+
                 }
             }
 
