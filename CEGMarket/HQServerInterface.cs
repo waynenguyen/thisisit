@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Script.Serialization;
 using Product_Class;
 using Json;
+using Newtonsoft.Json;
 namespace CEGMarket
 {
     
@@ -102,20 +103,15 @@ namespace CEGMarket
                 Console.WriteLine(req.StatusLine);
                 Console.WriteLine(req.ResponseTime);                
                 Json.JsonArray data = JsonParser.Deserialize(req.ResponseBody);
-                System.Collections.IEnumerator ite = data.GetEnumerator();          
-                while (ite.MoveNext())
-                {
-                    dynamic temp = ite.Current;
-                    object barcode = temp.id.ToString();
-                    object name = temp.name.ToString();
-                    object number_in_stock = temp.transistNum.ToString();
-                    object category = temp.category.ToString();
-                    object manufacturer = temp.brand.ToString();
-                    object price = temp.transistPrice.ToString();
-                    //object 
-                    Product tempP = new Product((string)barcode, (string)name, (string)category, (string)manufacturer, (double)price, (int)number_in_stock);
-                    listP.Add(tempP);
-                }
+                System.Collections.IEnumerator ite = data.GetEnumerator();
+                string jsonString = req.ResponseBody;
+                jsonString = jsonString.Replace("id", "barcode");
+                jsonString = jsonString.Replace("brand", "manufacturer");
+                jsonString = jsonString.Replace("transistNum", "number_in_stock");
+                jsonString = jsonString.Replace("transistPrice", "price");
+
+                dynamic deserializedProduct = (List<Product>)JsonConvert.DeserializeObject<List<Product>>(jsonString);
+                listP.AddRange(deserializedProduct);
             }
             LocalDBInterface.addListProduct(listP);
         }

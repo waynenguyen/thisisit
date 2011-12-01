@@ -11,9 +11,9 @@ namespace Product_Class
         private double _price;
         private int _number_in_stock;
         private int _number_sold_today;
-        public Product(string barc, string name, string category, string manufacturer, double price, int number_in_stock)
+        public Product(string barcode, string name, string category, string manufacturer, double price, int number_in_stock)
         {
-            _barcode = barc;
+            _barcode = barcode;
             _name = name;
             _category = category;
             _manufacturer = manufacturer;
