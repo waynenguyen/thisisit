@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using Product_Class;
-
+using Json;
 namespace CEGMarket
 {
     
     class productDataToSend
     {
         public string itemId { get; set; }
-        public int num { get; set; }
+        public int num { get; set; }        
     }
 
     class dataSender
     {
         public string storeId;
         public List<productDataToSend> data;
+        public string time;
     }
     static class HQServerInterface
     {
@@ -38,20 +39,29 @@ namespace CEGMarket
             dataSender dataSend = new dataSender();
             dataSend.storeId = "11001";
             dataSend.data = finalReport;
+            dataSend.time = DateTime.Now.ToString();
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             //string sJSON = oSerializer.Serialize(finalReport);
             string sJSON = oSerializer.Serialize(dataSend);
 
-            //HTTPGet req = new HTTPGet();
-            //string reqString = HQ_updateURL + "content=" + sJSON;
-            //req.Request(reqString);
-            //Console.WriteLine(req.StatusLine);
-            //Console.WriteLine(req.ResponseTime);
+            
 
             PostSubmitter postReq = new PostSubmitter();
             postReq.Url = HQ_updateURL;
-            postReq.PostItems.Add("content", sJSON);
+            postReq.PostItems.Add("", sJSON);
             string result = postReq.Post();
+
+            // update again
+
+            HTTPGet req = new HTTPGet();
+            string reqString = HQ_updateURL + "?id=11001&from=0&to=100";
+            req.Request(reqString);
+            Console.WriteLine(req.StatusLine);
+            Console.WriteLine(req.ResponseTime);
+
+
+
+
             /* HTTPPost example
             PostSubmitter post = new PostSubmitter();
             //post.Url = "http://ec2-50-17-68-237.compute-1.amazonaws.com/2102/post/14";
@@ -71,13 +81,43 @@ namespace CEGMarket
         }
 
         public static void sync()
-        {
+        {            
+            // reset local DB
+            LocalDBInterface.reset();
             HTTPGet req = new HTTPGet();
-            req.Request("http://cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
-            Console.WriteLine(req.StatusLine);
-            Console.WriteLine(req.ResponseTime);
+            List<Product> listP = new List<Product>();
+            string syncURL = "http://cegmarket.appspot.com/store/sync?id=11001&";
+            int start = 0, end = 10000;
 
-
+            while (true)
+            {
+                string fromString = "from=";
+                string toString = "to=";
+                fromString = fromString + start.ToString() + "&";
+                toString = toString + end.ToString();
+                req.Request(syncURL+fromString+toString);
+                if (req.StatusCode == 204) break;
+                start = end;
+                end = end + 10000;
+                Console.WriteLine(req.StatusLine);
+                Console.WriteLine(req.ResponseTime);                
+                Json.JsonArray data = JsonParser.Deserialize(req.ResponseBody);
+                System.Collections.IEnumerator ite = data.GetEnumerator();          
+                while (ite.MoveNext())
+                {
+                    dynamic temp = ite.Current;
+                    object barcode = temp.id.ToString();
+                    object name = temp.name.ToString();
+                    object number_in_stock = temp.transistNum.ToString();
+                    object category = temp.category.ToString();
+                    object manufacturer = temp.brand.ToString();
+                    object price = temp.transistPrice.ToString();
+                    //object 
+                    Product tempP = new Product((string)barcode, (string)name, (string)category, (string)manufacturer, (double)price, (int)number_in_stock);
+                    listP.Add(tempP);
+                }
+            }
+            LocalDBInterface.addListProduct(listP);
         }
 
 

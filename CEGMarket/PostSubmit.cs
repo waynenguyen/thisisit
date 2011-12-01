@@ -29,7 +29,7 @@ namespace CEGMarket
 
         private string m_url = string.Empty;
         private NameValueCollection m_values = new NameValueCollection();
-        private PostTypeEnum m_type = PostTypeEnum.Get;
+        private PostTypeEnum m_type = PostTypeEnum.Post;
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -151,6 +151,7 @@ namespace CEGMarket
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.ContentLength = postData.Length;
+                request.Accept = "appplication/json";
                 using (Stream writeStream = request.GetRequestStream())
                 {
                     UTF8Encoding encoding = new UTF8Encoding();

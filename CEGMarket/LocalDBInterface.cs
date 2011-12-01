@@ -36,6 +36,15 @@ namespace CEGMarket
             l_DBConn.Close();
         }
 
+        public static void reset()
+        {
+            openConnection();
+            MySqlCommand command = l_DBConn.CreateCommand();
+            String query = "UPDATE product SET is_sold_today= 'FALSE', number_in_stock = 0, number_sold_today = 0";
+            command.CommandText = query;
+            command.ExecuteNonQuery();
+            closeConnection();
+        }
         // PRODUCT RELATED INTERFACE
 
         // TODO : add reset is_sold_today and number_sold_today
@@ -49,6 +58,22 @@ namespace CEGMarket
                             "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
             command.CommandText = query;
             command.ExecuteNonQuery();
+            closeConnection();
+        }
+
+        public static void addListProduct(List<Product> listProduct)
+        {
+            openConnection();
+            MySqlCommand command = l_DBConn.CreateCommand();
+            for (int i = 0; i < listProduct.Count; i++)
+            {
+                Product newProduct = listProduct.ElementAt(i);
+                String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+                                "','" + newProduct.getName() + "','" + newProduct.getCategory() +
+                                "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+            }
             closeConnection();
         }
         public static Product getProduct(String barcode)
