@@ -16,6 +16,7 @@ using System.Threading;
 using CEGMarketSystem_Class;
 using Product_Class;
 using Transaction_Class;
+
 namespace CEGMarket
 {
     /// <summary>
@@ -26,6 +27,7 @@ namespace CEGMarket
         public MainWindow()
         {
             this.InitializeComponent();
+
             // Insert code required on object creation below this point.
             CEGMarketSystem CEGSystem = new CEGMarketSystem();
             //CEGSystem.CalculateProductProfit("123");
@@ -93,17 +95,21 @@ namespace CEGMarket
             {
                 cmbPortName.Text = "None";
                 MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
+                rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.\n");
                 //this.Close();
             }
         }
         private void openSerialPort()
         {
-            SerialConnection.openSerialConnection(cmbPortName.Text);
+            bool openPort = SerialConnection.openSerialConnection(cmbPortName.Text);
+            if (openPort == true) rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Serial Port "+cmbPortName.Text+" connected successfully\n");
+            else rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Can't connect to serial port " + cmbPortName.Text + "\n");
         }
 
-        private void closeSerialPort(SerialPort port)
+        private void closeSerialPort()
         {
             SerialConnection.closeSerialConnection();
+            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Serial Port Closed Successfully\n");
         }
        
 

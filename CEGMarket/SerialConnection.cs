@@ -29,7 +29,7 @@ namespace CEGMarket
             string[] SerialPortList = SerialPort.GetPortNames();
             return SerialPortList;
         }
-        public static void openSerialConnection(string COMPort) {
+        public static bool openSerialConnection(string COMPort) {
 
             _serialPort = new SerialPort(COMPort, 9600, Parity.None, 8, StopBits.One);
             _serialPort.ReadTimeout = 500;
@@ -44,6 +44,7 @@ namespace CEGMarket
                 MessageBox.Show("Error opening/writing to serial port: " + ex.Message, "Error!");
             }
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            return _serialPort.IsOpen;
         }
         public static void closeSerialConnection()
         {
@@ -72,7 +73,7 @@ namespace CEGMarket
                 Thread.Sleep(30);// in ms; 9600bps = 1B/ms
             }
             List<Byte> portBufferCopy = new List<Byte>(portBuffer);
-            if (portBuffer.Count == 1)
+            if (portBuffer.Count >1)
             {
                 //Check if it is Start Signal(1001 1011)
                 if (portBuffer[0] == 0x9B)//1001 1011?
@@ -95,10 +96,11 @@ namespace CEGMarket
                 //Check for End Transaction
                 if (portBuffer[0] == 0x9E || portBuffer[7] == 0x9E)   //1001 1110?
                 {
+                    //return total
+                    //add current transaction to Local DB
                     LocalDBInterface.addTransaction(tempTransaction);
-                    tempTransaction = new Transaction();
-                
-                
+                    TransactionInProgress = false;
+                    tempTransaction = new Transaction();               
                 }
             }
 
