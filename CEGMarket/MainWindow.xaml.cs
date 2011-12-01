@@ -34,35 +34,36 @@ namespace CEGMarket
 
 
             // testing protocols
-            LocalDBInterface.openConnection();
-            Product newP = new Product("333333", "beer", "F&B", "Sai Gon", 350, 333);
+            //LocalDBInterface.openConnection();
+            //Product newP = new Product("333333", "beer", "F&B", "Sai Gon", 350, 333);
             //LocalDBInterface.addProduct(newP); done
             //LocalDBInterface.addProductNumberInStock("333333", 300); done
             //LocalDBInterface.addProductNumberSoldToday("333333", 300); done
-            List<Product> t = LocalDBInterface.getCategoryDayReport("fruit", "2011-10-25");
-            t = LocalDBInterface.getManufacturerDayReport("Apple", "2011-10-24");
-            newP = LocalDBInterface.getProduct("111150");
-            t = LocalDBInterface.getProductByCategory("household");
-            t = LocalDBInterface.getProductByManufacturer("Farm");
-            t = LocalDBInterface.getProductDayReport("2011-10-25");
-            t = LocalDBInterface.getProductSoldToday();
-            Transaction trans = LocalDBInterface.getTransaction("6");
-            newP = LocalDBInterface.getProduct("333333");
-            newP.setManufacturer("Bia Sai Gon");
-            LocalDBInterface.modifyProduct(newP);
-            LocalDBInterface.removeProductNumberInStock("333333", 20);
-            LocalDBInterface.setProductNumberInStock("333333", 1234);
-            LocalDBInterface.closeConnection();
+            //List<Product> t = LocalDBInterface.getCategoryDayReport("fruit", "2011-10-25");
+            //t = LocalDBInterface.getManufacturerDayReport("Apple", "2011-10-24");
+            //newP = LocalDBInterface.getProduct("111150");
+            //t = LocalDBInterface.getProductByCategory("household");
+            //t = LocalDBInterface.getProductByManufacturer("Farm");
+            //t = LocalDBInterface.getProductDayReport("2011-10-25");
+            //t = LocalDBInterface.getProductSoldToday();
+            //Transaction trans = LocalDBInterface.getTransaction("6");
+            //newP = LocalDBInterface.getProduct("333333");
+            //newP.setManufacturer("Bia Sai Gon");
+            //LocalDBInterface.modifyProduct(newP);
+            //LocalDBInterface.removeProductNumberInStock("333333", 20);
+            //LocalDBInterface.setProductNumberInStock("333333", 1234);
+            //LocalDBInterface.closeConnection();
             /* HTTPGet example
             HTTPGet req = new HTTPGet();
             req.Request("http://ec2-50-17-68-237.compute-1.amazonaws.com/RTB/listpurchase/123");
             Console.WriteLine(req.StatusLine);
             Console.WriteLine(req.ResponseTime);
             */
-            HTTPGet req = new HTTPGet();
-            req.Request("http://3B.cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
-            Console.WriteLine(req.StatusLine);
-            Console.WriteLine(req.ResponseTime);
+            //HTTPGet req = new HTTPGet();
+            //req.Request("http://3B.cegmarket.appspot.com/store/sync?id=11001&from=0&to=100");
+            //Console.WriteLine(req.StatusLine);
+            //Console.WriteLine(req.ResponseTime);
+            HQServerInterface.sendTodayReport();
 		}
 
 		private void ReadSerialPort(object sender, System.Windows.RoutedEventArgs e)

@@ -10,12 +10,18 @@ namespace CEGMarket
     
     class productDataToSend
     {
-        public string barcode { get; set; }
-        public int sold_number { get; set; }
+        public string itemId { get; set; }
+        public int num { get; set; }
+    }
+
+    class dataSender
+    {
+        public string storeId;
+        public List<productDataToSend> data;
     }
     static class HQServerInterface
     {
-        
+        public const string HQ_updateURL = "http://cegmarket.appspot.com/store/update";
         
         public static void sendTodayReport()
         {
@@ -27,12 +33,25 @@ namespace CEGMarket
             List<productDataToSend> finalReport = new List<productDataToSend>();
             for (int i = 0; i < todayReport.Count; i++)
             {
-                finalReport.Add(new productDataToSend{barcode=todayReport.ElementAt(i).getBarcode(),sold_number=todayReport.ElementAt(i).getNumberSoldToday()});
+                finalReport.Add(new productDataToSend{itemId=todayReport.ElementAt(i).getBarcode(),num=todayReport.ElementAt(i).getNumberSoldToday()});
             }
+            dataSender dataSend = new dataSender();
+            dataSend.storeId = "11001";
+            dataSend.data = finalReport;
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            string sJSON = oSerializer.Serialize(finalReport);
+            //string sJSON = oSerializer.Serialize(finalReport);
+            string sJSON = oSerializer.Serialize(dataSend);
 
+            //HTTPGet req = new HTTPGet();
+            //string reqString = HQ_updateURL + "content=" + sJSON;
+            //req.Request(reqString);
+            //Console.WriteLine(req.StatusLine);
+            //Console.WriteLine(req.ResponseTime);
 
+            PostSubmitter postReq = new PostSubmitter();
+            postReq.Url = HQ_updateURL;
+            postReq.PostItems.Add("content", sJSON);
+            string result = postReq.Post();
             /* HTTPPost example
             PostSubmitter post = new PostSubmitter();
             //post.Url = "http://ec2-50-17-68-237.compute-1.amazonaws.com/2102/post/14";
