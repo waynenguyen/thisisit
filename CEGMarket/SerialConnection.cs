@@ -181,7 +181,6 @@ namespace CEGMarket
             {
                 string temp = orig.Substring(_length - 6, 6);
                 string temp2 = header + temp;
-                Console.WriteLine(temp2);
                 bytes[j] = Convert.ToByte(temp2, 2);
                 orig = orig.Substring(0, _length - 6);
                 _length -= 6;
@@ -190,6 +189,28 @@ namespace CEGMarket
             return bytes;
         }
 
+        public static void connectLCD(int id)
+        {
+            string header = "1100";
+            string LCDId = Convert.ToString(id, 2); // Convert to Binary
+            if (LCDId.Length < 12)
+            {
+                int temp = 12 - LCDId.Length;
+                for (int i = 0; i < temp; i++)
+                    LCDId = "0" + LCDId;
+            }
+            byte[] bytes = new byte[3];
+            int j = 0;// variable count from 0 to 4
+            while (LCDId.Length >= 4)
+            {
+                string temp = LCDId.Substring(LCDId.Length - 4, 4);
+                string temp2 = header + temp;
+                bytes[j] = Convert.ToByte(temp2, 2);
+                LCDId = LCDId.Substring(0, LCDId.Length - 4);
+                j++;
+            }
+            _serialPort.Write(bytes, 0, 4); 
+        }
     }
             
 }

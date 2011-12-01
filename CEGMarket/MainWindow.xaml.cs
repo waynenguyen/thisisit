@@ -64,7 +64,7 @@ namespace CEGMarket
             //Console.WriteLine(req.ResponseTime);
 
             //HQServerInterface.sendTodayReport();
-            HQServerInterface.sync();
+            //HQServerInterface.sync();
 
 		}
 
@@ -95,9 +95,10 @@ namespace CEGMarket
             {
                 cmbPortName.Text = "None";
                 MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
-                rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.\n");
+                rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer.Please install a COM Port and restart this app.\n");
                 //this.Close();
             }
+            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.connectLCD(129));
         }
         private void openSerialPort()
         {
@@ -116,6 +117,7 @@ namespace CEGMarket
         private void Exit_App(object sender, System.EventArgs e)
         {
             // TODO: Add event handler implementation here.
+            //SerialConnection.closeSerialConnection();
         }
 
     }
