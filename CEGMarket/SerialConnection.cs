@@ -52,7 +52,8 @@ namespace CEGMarket
             _serialPort.Write(new byte[] { 0x46 }, 0, 1);
         }
         public static void DataReceived(object sender,SerialDataReceivedEventArgs e)
-        {
+
+        { 
             // Get the number of bytes available to read.
             while (true)
             {
@@ -78,7 +79,9 @@ namespace CEGMarket
                     tempProduct = LocalDBInterface.getProduct(barcode);
                     double price = tempProduct.getPrice();
                     //Create Transaction
+                    tempTransaction.insertProductIntoShoppingBag(barcode, 1, 12);
                     //Return subtotal
+                    
                     
                 }
             }
@@ -88,6 +91,85 @@ namespace CEGMarket
             //While loop Receive Barcode, Receive Quantity, Create Transaction, ReturnSubtotal
             //check for total signal (1001 1100)
 
+        }
+        public static byte[] DEC_to_BCD(string DEC)
+        {
+            string price = DEC;
+            price = ConvertDECtoBCD(Convert.ToInt32(price));
+            byte[] bytes = SplitBCD(price, "00");
+            return bytes;
+        }
+
+        public static string ConvertDECtoBCD(int dec)
+        {
+            string result = "";
+            while (dec > 0)
+            {
+
+                int temp1 = dec % 10;
+                dec /= 10;
+                switch (temp1)
+                {
+                    case 0:
+                        result += "0000";
+                        break;
+                    case 1:
+                        result += "0001";
+                        break;
+                    case 2:
+                        result += "0010";
+                        break;
+                    case 3:
+                        result += "0011";
+                        break;
+                    case 4:
+                        result += "0100";
+                        break;
+                    case 5:
+                        result += "0101";
+                        break;
+                    case 6:
+                        result += "0110";
+                        break;
+                    case 7:
+                        result += "0111";
+                        break;
+                    case 8:
+                        result += "1000";
+                        break;
+                    case 9:
+                        result += "1001";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return result;
+        }
+
+        public static byte[] SplitBCD(string orig, string header)
+        {
+            int _length = orig.Length;
+            if (_length < 24)
+            {
+                int temp = 24 - _length;
+                for (int i = 0; i < temp; i++)
+                    orig = "0" + orig;
+            }
+            _length = 24;
+            byte[] bytes = new byte[4];
+            int j = 0;// variable count from 0 to 4
+            while (_length >= 6)
+            {
+                string temp = orig.Substring(_length - 6, 6);
+                string temp2 = header + temp;
+                Console.WriteLine(temp2);
+                bytes[j] = Convert.ToByte(temp2, 2);
+                orig = orig.Substring(0, _length - 6);
+                _length -= 6;
+                j++;
+            }
+            return bytes;
         }
 
     }

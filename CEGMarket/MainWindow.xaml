@@ -51,7 +51,7 @@
         			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,112,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="8,170.96,296.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
         				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="26.96" VerticalAlignment="Top"/>
-        			<Button Content="Convert to Byte" Margin="0,170.96,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="DEC_to_BCD" />
+        			<Button Content="Convert to Byte" Margin="0,170.96,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="ConvertToByte" />
         			<ComboBox HorizontalAlignment="Left" Margin="108.637,141.96,0,0" VerticalAlignment="Top" Width="88"/>
         			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="8,137.96,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<ComboBox x:Name="cmbPortName" HorizontalAlignment="Left" Margin="108.637,0,0,161.12" VerticalAlignment="Bottom" Width="88"/>
