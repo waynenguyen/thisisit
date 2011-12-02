@@ -63,14 +63,17 @@ namespace CEGMarket
             //Console.WriteLine(req.StatusLine);
             //Console.WriteLine(req.ResponseTime);
 
+<<<<<<< HEAD
             HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
 
+=======
+            //HQServerInterface.sendTodayReport();
+            //HQServerInterface.sync();
+            SerialConnection.stringToByte("ngotuanvu");
+>>>>>>> 100a53d078540aa4c0ca9b4c66b032415b013e35
 		}
 
-        private void ReadSerialPort(object sender, System.Windows.RoutedEventArgs e)
-        {
-        }
         private void ConvertToByte(object sender, System.Windows.RoutedEventArgs e)
         {
             string price = PriceTextBox.Text;
@@ -94,28 +97,27 @@ namespace CEGMarket
             else
             {
                 cmbPortName.Text = "None";
-                MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
-                rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.\n");
+                //MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
+                rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer. Please install a COM Port and restart this app.\n");
                 //this.Close();
             }
         }
         private void openSerialPort()
         {
-            bool openPort = SerialConnection.openSerialConnection(cmbPortName.Text);
-            if (openPort == true) rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Serial Port "+cmbPortName.Text+" connected successfully\n");
-            else rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Can't connect to serial port " + cmbPortName.Text + "\n");
+            SerialConnection.openSerialConnection(cmbPortName.Text);
+            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.rtxtemp);
         }
 
         private void closeSerialPort()
         {
             SerialConnection.closeSerialConnection();
-            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "Serial Port Closed Successfully\n");
+            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.rtxtemp);
         }
-       
 
         private void Exit_App(object sender, System.EventArgs e)
         {
             // TODO: Add event handler implementation here.
+            //SerialConnection.closeSerialConnection();
         }
 
     }

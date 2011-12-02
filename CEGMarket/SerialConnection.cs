@@ -21,15 +21,16 @@ namespace CEGMarket
         static bool TransactionInProgress=false;
         static Transaction tempTransaction;
         static Product tempProduct;
+        public static string rtxtemp;
         /****************************************************************************************************/
-        // Functions
+        // Serial Port Related Functions
         /****************************************************************************************************/
         public static string[] GetSerialPorts()
         {
             string[] SerialPortList = SerialPort.GetPortNames();
             return SerialPortList;
         }
-        public static bool openSerialConnection(string COMPort) {
+        public static void openSerialConnection(string COMPort) {
 
             _serialPort = new SerialPort(COMPort, 9600, Parity.None, 8, StopBits.One);
             _serialPort.ReadTimeout = 500;
@@ -38,17 +39,23 @@ namespace CEGMarket
             try
             {
                     if (!_serialPort.IsOpen) _serialPort.Open();
+                    rtxtemp = "Serial Port "+ COMPort +" opens successfully/n";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error opening/writing to serial port: " + ex.Message, "Error!");
+                rtxtemp = "Error opening serial port" + COMPort +"/n";
             }
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-            return _serialPort.IsOpen;
         }
         public static void closeSerialConnection()
         {
-            if (_serialPort.IsOpen) _serialPort.Close();
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.Close();
+                rtxtemp = "Serial Port closed successfully";
+            }
+            else rtxtemp = "No openning serial port";
         }
         public static void WriteToSerialPort(byte[] bytes,int num)
         {
@@ -110,6 +117,10 @@ namespace CEGMarket
             //check for total signal (1001 1100)
 
         }
+
+        /****************************************************************************************************/
+        // Conversion for LED Related Functions
+        /****************************************************************************************************/
         public static byte[] DEC_to_BCD(string DEC)
         {
             string price = DEC;
@@ -181,7 +192,6 @@ namespace CEGMarket
             {
                 string temp = orig.Substring(_length - 6, 6);
                 string temp2 = header + temp;
-                Console.WriteLine(temp2);
                 bytes[j] = Convert.ToByte(temp2, 2);
                 orig = orig.Substring(0, _length - 6);
                 _length -= 6;
@@ -190,6 +200,62 @@ namespace CEGMarket
             return bytes;
         }
 
+        /****************************************************************************************************/
+        // Conversion for LED Related Functions
+        /****************************************************************************************************/
+
+        // THis function will write the start signal for LCD with "ID"
+        public static void connectLCD(int id)
+        {
+            string header = "1100";
+            string LCDId = Convert.ToString(id, 2); // Convert to Binary
+            if (LCDId.Length < 12)
+            {
+                int temp = 12 - LCDId.Length;
+                for (int i = 0; i < temp; i++)
+                    LCDId = "0" + LCDId;
+            }
+            byte[] bytes = new byte[3];
+            int j = 0;// variable count from 0 to 4
+            while (LCDId.Length >= 4)
+            {
+                string temp = LCDId.Substring(LCDId.Length - 4, 4);
+                string temp2 = header + temp;
+                bytes[j] = Convert.ToByte(temp2, 2);
+                LCDId = LCDId.Substring(0, LCDId.Length - 4);
+                j++;
+            }
+            _serialPort.Write(bytes, 0, 4); 
+        }
+
+        public static byte[] charToByte(char c) 
+        {   
+            byte[] bytes=new byte[2];
+            //Lower bit of a byte
+            byte byte1 = Convert.ToByte(c & 15); // Char && with 15
+            bytes[1] = Convert.ToByte(byte1 | 192); // Char || with 1100 0000
+            
+            // Higher bit of a byte
+            byte byte3 = Convert.ToByte(c >> 4);
+            bytes[0] = Convert.ToByte(byte3 | 192); //  Logical OR with 1100 0000
+            return bytes;
+        }
+
+        public static byte[] stringToByte(string s)
+        {
+            int i = 0;
+            int noOfByte= s.Length*2;
+            byte[] tempBytes=new byte[2];
+            byte[] bytes = new byte[noOfByte];
+            while (i<s.Length)
+            {
+                tempBytes = charToByte(s.ElementAt(i));
+                bytes[2 * i] = tempBytes[0];
+                bytes[2 * i + 1] = tempBytes[1];
+                i++;
+            }
+            return bytes;
+        }
     }
             
 }
