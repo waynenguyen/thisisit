@@ -201,7 +201,7 @@ namespace CEGMarket
         }
 
         /****************************************************************************************************/
-        // Conversion for LED Related Functions
+        // Conversion for LCD Related Functions
         /****************************************************************************************************/
 
         // THis function will write the start signal for LCD with "ID"
@@ -231,13 +231,15 @@ namespace CEGMarket
         public static byte[] charToByte(char c) 
         {   
             byte[] bytes=new byte[2];
-            //Lower bit of a byte
-            byte byte1 = Convert.ToByte(c & 15); // Char && with 15
-            bytes[1] = Convert.ToByte(byte1 | 192); // Char || with 1100 0000
-            
+
             // Higher bit of a byte
-            byte byte3 = Convert.ToByte(c >> 4);
-            bytes[0] = Convert.ToByte(byte3 | 192); //  Logical OR with 1100 0000
+            byte byte1 = Convert.ToByte(c >> 4);
+            bytes[0] = Convert.ToByte(byte1 | 208); //  Logical OR with 1101 0000
+
+            //Lower bit of a byte
+            byte byte2 = Convert.ToByte(c & 15); // Char && with 15
+            bytes[1] = Convert.ToByte(byte2 | 208); // Char || with 1101 0000
+            
             return bytes;
         }
 
@@ -255,6 +257,26 @@ namespace CEGMarket
                 i++;
             }
             return bytes;
+        }
+
+        public static void sendToLED(string s) 
+        {
+            // if Length < 16 -> add space after
+            if (s.Length < 16)
+                for (int i = 0; i < s.Length - 16; i++)
+                {
+                    s += " ";
+                }
+            // if length > 16 -> cut it
+            else if (s.Length > 16)
+                s = s.Substring(0, 16);
+
+            // Convert to bytes
+            byte[] buffer = new byte[16];
+            buffer = stringToByte(s);
+
+            // Write via serial port
+            _serialPort.Write(buffer,0,16);
         }
     }
             
