@@ -51,7 +51,7 @@
         			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,98.92,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="12,154.84,292.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
         				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="26.96" VerticalAlignment="Top"/>
-        			<Button Content="Convert to Byte" Margin="0,155.84,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="ConvertToByte" />
+        			<Button Content="Send to LED" Margin="0,155.84,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="SendToLED" />
         			<ComboBox HorizontalAlignment="Left" Margin="112.637,128.88,0,0" VerticalAlignment="Top" Width="88"/>
         			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="12,124.88,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<ComboBox x:Name="cmbPortName" Margin="301,128.88,225,0" VerticalAlignment="Top"/>
@@ -61,6 +61,7 @@
         				<FlowDocument/>
         			</RichTextBox>
         			<GroupBox Header="GroupBox" HorizontalAlignment="Right" Margin="0,12,120.5,0" VerticalAlignment="Top" Height="83.92" Width="159.5"/>
+        			<Button Content="Connect" Margin="0,129.88,32.5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ConnectSerialPort"/>
         		</Grid>
         	</TabItem>
         </TabControl>

@@ -22,6 +22,28 @@ namespace CEGMarket
         static Transaction tempTransaction;
         static Product tempProduct;
         public static string rtxtemp;
+
+        // Atrributes (Phong)
+        static int bufferSize = 6;
+        static byte startSig = 0;
+        static byte paySig = 0;
+        static byte endSig = 0;
+        static int dataPadding = 3;
+        static int startPadding = 1;
+        static int endPadding = 2;
+        static int cashRegisterID = 23;
+        static int sdgf = 1;
+        static byte[] buffer = new byte[bufferSize];
+        static int idx = 0;
+
+        static int mode = 0; // 0 barcode-quantity; 1 payment; 2 end
+
+        static double subtotal = 0.0;
+        static int barcode = 0;
+        static int quantity = 0;
+
+        static double pay = 0.0;
+        static double change = 0.0;
         /****************************************************************************************************/
         // Serial Port Related Functions
         /****************************************************************************************************/
@@ -80,38 +102,106 @@ namespace CEGMarket
                 Thread.Sleep(30);// in ms; 9600bps = 1B/ms
             }
             List<Byte> portBufferCopy = new List<Byte>(portBuffer);
-            if (portBuffer.Count >1)
+
+
+            // Read and write to LED by Phong
+
+            for (int i = 0; i < portBuffer.Count; i++)
             {
-                //Check if it is Start Signal(1001 1011)
-                if (portBuffer[0] == 0x9B)//1001 1011?
+                if (portBuffer[i] == startSig)
                 {
-                    TransactionInProgress = true;
-                    //reset transaction
-                    tempTransaction = new Transaction();
-                    //Get Barcode from serial
-                    string barcode="333333";
-                    //Get quantity from serial
-                    string quantity="0";
-                    //Get price from Local DB
-                    tempProduct = LocalDBInterface.getProduct(barcode);
-                    double price = tempProduct.getPrice();
-                    //Create Transaction
-                    tempTransaction.insertProductIntoShoppingBag(barcode, 1, 12);
-                    //Return subtotal
-                    _serialPort.Write(new byte[] { 0x0A, 0xE2, 0xFF }, 0, 3);//need to change data.
+                    mode = 0;
+                    idx = 0;
                 }
-                //Check for End Transaction
-                if (portBuffer[0] == 0x9E || portBuffer[7] == 0x9E)   //1001 1110?
+                else if (portBuffer[i] == paySig)
                 {
-                    //return total
-                    //add current transaction to Local DB
-                    LocalDBInterface.addTransaction(tempTransaction);
-                    TransactionInProgress = false;
-                    tempTransaction = new Transaction();               
+                    mode = 1;
+                    idx = 0;
+                }
+                else if (portBuffer[i] == endSig)
+                {
+                    mode = 2;
+                }
+
+                if (idx < bufferSize)
+                    buffer[idx++] = (portBuffer[i]);
+                else
+                {
+                    // full buffer -> get enough data
+                    //    mode = 0: barcode and quantity
+                    //    mode = 1: payment and change
+                    //    mode = 2: payment and change
+                    if (mode == 0)
+                    {
+                        // get barcode and quantity
+                        convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out barcode);
+                        convertBCDToNumber(new byte[] { buffer[3], buffer[4], buffer[5] }, out quantity);
+
+                        subtotal += quantity * 2.5; // suppose 10 dollars per item
+                        int tmp = (int)(subtotal * 100);
+                        byte[] output = new byte[4];
+                        convertToBCD(tmp, out output, dataPadding);
+
+                        // send back subtotal
+                        _serialPort.Write(output, 0, 4);
+
+                        idx = 0;
+                    }
+                    else // if (mode == 1 || mode == 2)
+                    {
+                        int tmp = 0;
+                        // get payment and change
+                        convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out tmp);
+                        pay = ((double)tmp) / 100;
+                        convertBCDToNumber(new byte[] { buffer[3], buffer[4], buffer[5] }, out tmp);
+                        change = ((double)tmp) / 100;
+
+                        {
+                            // send ack
+                            byte[] output = new byte[4];
+                            convertToBCD(cashRegisterID, out output, endPadding);
+                            _serialPort.Write(output, 0, 1);
+
+                            idx = 0;
+                            mode = 0;
+                        }
+                    }
                 }
             }
 
-            RxString = System.Text.ASCIIEncoding.ASCII.GetString(portBuffer.ToArray());
+            //Console.Write(portBuffer);
+            //if (portBuffer.Count >1)
+            //{
+            //    //Check if it is Start Signal(1001 1011)
+            //    if (portBuffer[0] == 0x9B)//1001 1011?
+            //    {
+            //        TransactionInProgress = true;
+            //        //reset transaction
+            //        tempTransaction = new Transaction();
+            //        //Get Barcode from serial
+            //        string barcode="333333";
+            //        //Get quantity from serial
+            //        string quantity="0";
+            //        //Get price from Local DB
+            //        tempProduct = LocalDBInterface.getProduct(barcode);
+            //        double price = tempProduct.getPrice();
+            //        //Create Transaction
+            //        tempTransaction.insertProductIntoShoppingBag(barcode, 1, 12);
+            //        //Return subtotal
+            //        _serialPort.Write(new byte[] { 0x0A, 0xE2, 0xFF }, 0, 3);//need to change data.
+            //    }
+            //    //Check for End Transaction
+            //    if (portBuffer[0] == 0x9E || portBuffer[7] == 0x9E)   //1001 1110?
+            //    {
+            //        //return total
+            //        //add current transaction to Local DB
+            //        LocalDBInterface.addTransaction(tempTransaction);
+            //        TransactionInProgress = false;
+            //        tempTransaction = new Transaction();               
+            //    }
+            //}
+
+            //RxString = System.Text.ASCIIEncoding.ASCII.GetString(portBuffer.ToArray());
             
             //While loop Receive Barcode, Receive Quantity, Create Transaction, ReturnSubtotal
             //check for total signal (1001 1100)
@@ -201,6 +291,53 @@ namespace CEGMarket
         }
 
         /****************************************************************************************************/
+        // Conversion for LED Related Functions (by Phong)
+        /****************************************************************************************************/
+        static void convertBCDToNumber(byte[] input, out int number)
+        {
+            // input[0]: LSB
+            number = 0;
+            for (int i = input.Length - 1; i >= 0; i--)
+            {
+                number = number * 100 + (input[i] >> 4) * 10 + (input[i] & 15);
+            }
+        }
+
+        static void convertToBCD(int number, out byte[] output, int padding)
+        {
+            byte[] tmp1 = new byte[6];
+
+            padding <<= 6;
+
+            for (int i = 0; i < 6; i++)
+            {
+                tmp1[i] = Convert.ToByte(number % 10);
+                number /= 10;
+            }
+
+            byte tmp = 0;
+            output = new byte[4];
+
+            tmp = (byte)((tmp1[1] & 3) << 4);
+            output[0] = (byte)(tmp1[0] | tmp);
+
+            tmp = (byte)(tmp1[1] >> 2);
+            output[1] = (byte)(tmp | (tmp1[2] << 2));
+
+            tmp = (byte)((tmp1[4] & 3) << 4);
+            output[2] = (byte)(tmp1[3] | tmp);
+
+            tmp = (byte)(tmp1[4] >> 2);
+            output[3] = (byte)((tmp1[5] << 2) | tmp);
+
+            for (int i = 0; i < 4; i++)
+            {
+                output[i] = (byte)(output[i] | padding);
+            }
+        }
+
+
+        /****************************************************************************************************/
         // Conversion for LCD Related Functions
         /****************************************************************************************************/
 
@@ -225,7 +362,7 @@ namespace CEGMarket
                 LCDId = LCDId.Substring(0, LCDId.Length - 4);
                 j++;
             }
-            _serialPort.Write(bytes, 0, 4); 
+            _serialPort.Write(bytes, 0, 3); 
         }
 
         public static byte[] charToByte(char c) 
@@ -276,6 +413,7 @@ namespace CEGMarket
             buffer = stringToByte(s);
 
             // Write via serial port
+            connectLCD(3855);
             _serialPort.Write(buffer,0,16);
         }
     }

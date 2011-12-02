@@ -64,13 +64,13 @@ namespace CEGMarket
             //Console.WriteLine(req.ResponseTime);
 
 
-            HQServerInterface.sendTodayReport();
+            //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
 
 
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
-            SerialConnection.stringToByte("ngotuanvu");
+            //SerialConnection.stringToByte("ngotuanvu");
 
 		}
 
@@ -118,6 +118,19 @@ namespace CEGMarket
         {
             // TODO: Add event handler implementation here.
             //SerialConnection.closeSerialConnection();
+        }
+
+        private void SendToLED(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            SerialConnection.sendToLED(PriceTextBox.Text);
+        }
+
+        private void ConnectSerialPort(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            SerialConnection.openSerialConnection(cmbPortName.Text);
+            rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.rtxtemp);
         }
 
     }
