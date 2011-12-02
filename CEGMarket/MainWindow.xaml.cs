@@ -63,9 +63,15 @@ namespace CEGMarket
             //Console.WriteLine(req.StatusLine);
             //Console.WriteLine(req.ResponseTime);
 
+
+            HQServerInterface.sendTodayReport();
+            //HQServerInterface.sync();
+
+
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
             SerialConnection.stringToByte("ngotuanvu");
+
 		}
 
         private void ConvertToByte(object sender, System.Windows.RoutedEventArgs e)

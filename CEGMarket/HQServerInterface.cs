@@ -23,7 +23,7 @@ namespace CEGMarket
     }
     static class HQServerInterface
     {
-        public const string HQ_updateURL = "http://cegmarket.appspot.com/store/update";
+        public const string HQ_updateURL = "http://5a.cegmarket.appspot.com/store/update";
         
         public static void sendTodayReport()
         {
@@ -37,6 +37,7 @@ namespace CEGMarket
             {
                 finalReport.Add(new productDataToSend{itemId=todayReport.ElementAt(i).getBarcode(),num=todayReport.ElementAt(i).getNumberSoldToday()});
             }
+            if (todayReport.Count == 0) return;
             dataSender dataSend = new dataSender();
             dataSend.storeId = "11001";
             dataSend.data = finalReport;
@@ -50,8 +51,11 @@ namespace CEGMarket
             PostSubmitter postReq = new PostSubmitter();
             postReq.Url = HQ_updateURL;
             postReq.PostItems.Add("", sJSON);
-            string result = postReq.Post();
-
+            try
+            {
+                string result = postReq.Post();
+            }
+            catch { };
             // update again
 
             HTTPGet req = new HTTPGet();
