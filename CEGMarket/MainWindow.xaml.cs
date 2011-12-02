@@ -63,8 +63,8 @@ namespace CEGMarket
             //Console.WriteLine(req.StatusLine);
             //Console.WriteLine(req.ResponseTime);
 
-            //HQServerInterface.sendTodayReport();
-            HQServerInterface.sync();
+            HQServerInterface.sendTodayReport();
+            //HQServerInterface.sync();
 
 		}
 

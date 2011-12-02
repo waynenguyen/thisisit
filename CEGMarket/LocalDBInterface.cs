@@ -55,7 +55,7 @@ namespace CEGMarket
             MySqlCommand command = l_DBConn.CreateCommand();
             try
             {
-                String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+                String query = "REPLACE product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
                                 "','" + newProduct.getName() + "','" + newProduct.getCategory() +
                                 "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
                 command.CommandText = query;
@@ -74,7 +74,7 @@ namespace CEGMarket
                 Product newProduct = listProduct.ElementAt(i);
                 try
                 {
-                    String query = "INSERT INTO product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
+                    String query = "REPLACE product(barcode,number_in_stock,name,category,price,manufacturer) VALUES('" + newProduct.getBarcode() + "','" + newProduct.getNumberInStock().ToString() +
                                     "','" + newProduct.getName() + "','" + newProduct.getCategory() +
                                     "','" + newProduct.getPrice().ToString() + "','" + newProduct.getManufacturer() + "')";
                     command.CommandText = query;

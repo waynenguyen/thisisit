@@ -149,7 +149,8 @@ namespace CEGMarket
                 Uri uri = new Uri(url);
                 request = (HttpWebRequest)WebRequest.Create(uri);
                 request.Method = "POST";
-                request.ContentType = "application/x-www-form-urlencoded";
+                //request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentType = "application/json; charset=utf-8";
                 request.ContentLength = postData.Length;
                 request.Accept = "appplication/json";
                 using (Stream writeStream = request.GetRequestStream())
