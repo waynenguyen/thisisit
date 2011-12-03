@@ -25,9 +25,12 @@ namespace CEGMarket
 
         // Atrributes (Phong)
         const int bufferSize = 6;
+        
         const byte startSig = 251;
         const byte paySig = 252;
         const byte endSig = 250;
+        const byte contSig = 253;
+
         const int dataPadding = 0;
         const int startPadding = 1;
         const int endPadding = 2;
@@ -36,7 +39,7 @@ namespace CEGMarket
         static byte[] buffer = new byte[bufferSize];
         static int idx = 0;
 
-        static int mode = 0; // 0 barcode-quantity; 1 payment; 2 end
+        static int mode = 0; // 0 barcode-quantity; 1 payment; 2 end; 3 cont trans
 
         static double subtotal = 0.0;
         static int barcode = 0;
@@ -45,6 +48,7 @@ namespace CEGMarket
         static double pay = 0.0;
         static double change = 0.0;
         static Thread readingThread;
+
         /****************************************************************************************************/
         // Serial Port Related Functions
         /****************************************************************************************************/
@@ -56,8 +60,8 @@ namespace CEGMarket
         public static void openSerialConnection(string COMPort) {
 
             _serialPort = new SerialPort(COMPort, 9600, Parity.None, 8, StopBits.One);
-            _serialPort.ReadTimeout = 500;
-            _serialPort.WriteTimeout = 500;
+            //_serialPort.ReadTimeout = 500;
+            //_serialPort.WriteTimeout = 500;
 
             try
             {
@@ -70,7 +74,10 @@ namespace CEGMarket
                 rtxtemp = "Error opening serial port" + COMPort +"/n";
             }
             readingThread = new Thread(new ThreadStart(readSerial));
-            _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            readingThread.Start();
+            byte[] output = new byte[4];
+            output[0] = (byte)(cashRegisterID | (startPadding << 6));
+            _serialPort.Write(output, 0, 1);
         }
         public static void closeSerialConnection()
         {
@@ -95,11 +102,9 @@ namespace CEGMarket
         {
             while (true)
             {
-                int tmptmp = _serialPort.ReadByte();
-                byte tmp = Convert.ToByte(tmptmp);
+                byte tmp = Convert.ToByte(_serialPort.ReadByte());
 
                 Console.WriteLine("--Rec: " + tmp);
-                Console.WriteLine("." + tmptmp);
 
                 if (tmp == startSig)
                 {
@@ -108,7 +113,7 @@ namespace CEGMarket
                     idx = 0;
 
                     //Create Transaction
-                    Transaction tempTransaction= new Transaction();
+                    tempTransaction= new Transaction();
                 }
                 else if (tmp == paySig)
                 {
@@ -120,6 +125,12 @@ namespace CEGMarket
                 {
                     Console.WriteLine("Received end signal");
                     mode = 2;
+                }
+                else if (tmp == contSig)
+                {
+                    Console.WriteLine("Received cont signal");
+                    mode = 3;
+                    idx = 0;
                 }
 
                 if (idx < bufferSize)
@@ -149,12 +160,19 @@ namespace CEGMarket
                                 Console.WriteLine("Received: Barcode: " + barcode + " Quantity: " + quantity);
                                 
                                 //Get Price of product with barcode
-                                double price = LocalDBInterface.getProduct(Convert.ToString(barcode)).getPrice();
+                                Product temp2 = LocalDBInterface.getProduct(Convert.ToString(barcode));
+                                double price = 0;
+                                if (temp2 == null) price = 0;
+                                else
+                                {
+                                    price = temp2.getPrice();
+                                    // Add product to transaction
+                                    tempTransaction.insertProductIntoShoppingBag(Convert.ToString(barcode), quantity, price * quantity);
+                                }
+                            
+
                                 subtotal += quantity * price; // suppose 10 dollars per item
-
-                                // Add product to transaction
-                                tempTransaction.insertProductIntoShoppingBag(Convert.ToString(barcode), quantity, price * quantity);
-
+                                                      
                                 int tmpSubtt = (int)(subtotal * 100);
                                 byte[] output = new byte[4];
                                 convertToBCD(tmpSubtt, out output, dataPadding);
@@ -174,7 +192,7 @@ namespace CEGMarket
 
                                 idx = 0;
                             }
-                            else // if (mode == 1 || mode == 2)
+                            else if (mode == 1 || mode == 2)// if (mode == 1 || mode == 2)
                             {
                                 int tmpPay = 0;
                                 // get payment and change
@@ -200,7 +218,23 @@ namespace CEGMarket
                                     LocalDBInterface.addTransaction(tempTransaction);
                                 }
                             }
-                        } // if idx == 5
+                        } // if idx == 6
+                        else if (mode == 3 && idx == 3) // continue transaction
+                        {
+                            int transID;
+                            convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out transID);
+
+                            Console.WriteLine("Recieved: transID: " + transID);
+
+                            int subtotalInt = 12345;
+                            byte[] output = new byte[4];
+                            convertToBCD(subtotalInt, out output, dataPadding);
+
+                            _serialPort.Write(output, 0, 4); // sent back subtotal
+                            
+                            idx = 0;
+                            mode = 0;
+                        }
                     } // if data is bcd (data)
                 }
             }

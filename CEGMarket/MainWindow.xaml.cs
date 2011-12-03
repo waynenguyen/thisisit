@@ -71,7 +71,19 @@ namespace CEGMarket
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
             //SerialConnection.stringToByte("ngotuanvu");
-
+            //Transaction tempTransaction = new Transaction();
+            //string barcode = "123445";
+            //int quantity = 1;
+            //Product temp2 = LocalDBInterface.getProduct(Convert.ToString(barcode));
+            //double price = 0;
+            //if (temp2 == null) price = 0;
+            //else
+            //{
+            //    price = temp2.getPrice();
+            //    // Add product to transaction
+            //    tempTransaction.insertProductIntoShoppingBag(Convert.ToString(barcode), quantity, price * quantity);
+            //}
+            //LocalDBInterface.addTransaction(tempTransaction);
 		}
 
         private void ConvertToByte(object sender, System.Windows.RoutedEventArgs e)
@@ -100,6 +112,7 @@ namespace CEGMarket
                 //MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
                 rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer. Please install a COM Port and restart this app.\n");
                 //this.Close();
+                
             }
         }
         private void openSerialPort()
