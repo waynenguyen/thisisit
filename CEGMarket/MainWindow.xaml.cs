@@ -142,13 +142,10 @@ namespace CEGMarket
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
-<<<<<<< HEAD
+
 
             // Convert to list of string and bind
             ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
-=======
-          
->>>>>>> 5546a1065b4dc913ca4713f3b7fefc1355ff6595
         }
 
         private void GetProductByCategory(object sender, System.Windows.RoutedEventArgs e)
