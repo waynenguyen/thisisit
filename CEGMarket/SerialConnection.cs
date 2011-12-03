@@ -215,7 +215,15 @@ namespace CEGMarket
                                     subtotal = 0.0;
 
                                     //Add Transaction
+                                    DateTime time = DateTime.Now;              // Use current time
+                                    string format = "yyyy-MM-dd";    // Use this format
+                                    Console.WriteLine(time.ToString(format));
+                                    tempTransaction.setDate(time.ToString(format));
+                                    tempTransaction.setTotalPrice(subtotal);
+                                    tempTransaction.setMoneyReceive(pay);
+                                    tempTransaction.setMoneyChange(change);
                                     LocalDBInterface.addTransaction(tempTransaction);
+                                    Console.WriteLine("Transaction completed successfully");
                                 }
                             }
                         } // if idx == 6
@@ -225,12 +233,16 @@ namespace CEGMarket
                             convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out transID);
 
                             Console.WriteLine("Recieved: transID: " + transID);
-
-                            int subtotalInt = 12345;
-                            byte[] output = new byte[4];
-                            convertToBCD(subtotalInt, out output, dataPadding);
-
-                            _serialPort.Write(output, 0, 4); // sent back subtotal
+                            int subtotalInt = 0;
+                            Transaction temp3 = LocalDBInterface.getTransaction(Convert.ToString(transID));
+                            if (temp3 == null) subtotalInt = 0;
+                            else
+                            {
+                                subtotalInt = (int)(temp3.getTotalPrice()*100);
+                                byte[] output = new byte[4];
+                                convertToBCD(subtotalInt, out output, dataPadding);
+                                _serialPort.Write(output, 0, 4); // sent back subtotal
+                            }               
                             
                             idx = 0;
                             mode = 0;

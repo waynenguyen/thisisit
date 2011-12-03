@@ -51,8 +51,7 @@
         	</TabItem>
         	<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
         		<Grid Background="#FFE5E5E5">
-        			<Button Height="23" Margin="10,8.04,0,0" x:Name="button1" VerticalAlignment="Top" Content="Check Serial Connection" HorizontalAlignment="Left" Width="143" />
-        			<Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
+                    <Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
         			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="10,116.04,0,0" x:Name="button2_Copy1" VerticalAlignment="Top" Width="143" />
         			<Button Content="Send data to server" Height="23" Margin="10,64.04,0,0" x:Name="button2_Copy2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" d:LayoutOverrides="HorizontalAlignment" />
         			<Button Content="Request data from server" Margin="10,91.04,0,0" x:Name="button2_Copy3" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" />

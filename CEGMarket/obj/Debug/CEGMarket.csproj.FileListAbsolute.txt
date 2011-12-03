@@ -15,3 +15,4 @@ D:\Dropbox\CG3002 Group\Software Application\v0.1.3\CEGMarket\obj\Debug\Generate
 D:\Dropbox\CG3002 Group\Software Application\v0.1.3\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
 D:\Dropbox\CG3002 Group\Software Application\v0.1.3\CEGMarket\obj\Debug\CEGMarket.exe
 D:\Dropbox\CG3002 Group\Software Application\v0.1.3\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\CEGMarket.exe.config
