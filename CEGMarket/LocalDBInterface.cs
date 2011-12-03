@@ -259,8 +259,8 @@ namespace CEGMarket
             }
 
 
-            query = "REPLACE transaction(money_receive,money_change,date,total_price) VALUES('" +
-                            transaction.getMoneyReceive() + "','" + transaction.getMoneyChange() +
+            query = "REPLACE transaction(id, money_receive,money_change,date,total_price) VALUES('" +
+                           transaction.getId() + "','" + transaction.getMoneyReceive() + "','" + transaction.getMoneyChange() +
                             "','" + transaction.getDate() + "','" + transaction.getTotalPrice() + "')";
             command.CommandText = query;
             command.ExecuteNonQuery();
