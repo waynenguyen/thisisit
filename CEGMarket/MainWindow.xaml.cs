@@ -143,6 +143,10 @@ namespace CEGMarket
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5292739356504252d807e1a7fa05e6271edc5a5f
 
             // Convert to list of string and bind
             ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
