@@ -219,11 +219,12 @@ namespace CEGMarket
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
-            int number_sold_today = removed_number_in_stock;
+            int number_sold_today=0;
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 int number_in_stock = (int)Int64.Parse(reader.GetValue(1).ToString());
+                number_sold_today = (int)Int64.Parse(reader.GetValue(7).ToString());
                 removed_number_in_stock = number_in_stock - removed_number_in_stock;
                 number_sold_today = number_sold_today + removed_number_in_stock;
             }
