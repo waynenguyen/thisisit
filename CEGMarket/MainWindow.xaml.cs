@@ -136,14 +136,26 @@ namespace CEGMarket
         private void GetProductSoldToday(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+            //Clear Product List View
+            //ProductListView.Items.Clear();
+
+            // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
-            ProductListView.ItemsSource = temp.;
+
+            // Convert to list of string and bind
+            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
         }
 
         private void GetProductByCategory(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+            // Create and get list of Products
+            List<Product> temp = new List<Product>();
+            temp = LocalDBInterface.getProductByManufacturer(CatManListBox.Text);
+
+            // Convert to list of string and bind
+            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
         }
 
         private void GetProduct(object sender, System.Windows.RoutedEventArgs e)
@@ -154,11 +166,31 @@ namespace CEGMarket
         private void GetProductByManufacturer(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+
         }
 
         private void GetProductSoldByDay(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+            
+        }
+
+        private void GetCategoryList(object sender, System.Windows.RoutedEventArgs e)
+        {
+            // TODO: Add event handler implementation here.
+            CatManListBox.ItemsSource = null;
+
+            // Get list of Manufacturer and binding
+            CatManListBox.ItemsSource = LocalDBInterface.getListCategory();
+        }
+
+        private void GetManufacturerList(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            CatManListBox.ItemsSource = null;
+
+            // Get list of Manufacturer and binding
+            CatManListBox.ItemsSource = LocalDBInterface.getListManufacturer();
             
         }
 
