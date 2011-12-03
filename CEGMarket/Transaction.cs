@@ -43,6 +43,10 @@ namespace Transaction_Class
         // getters
         public String getId()
         {
+            for (int i = 0; i < 6 - _id.Length; i++)
+            {
+                _id = "0" + _id;
+            }
             return _id;
         }
         public String getDate()
