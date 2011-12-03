@@ -66,7 +66,8 @@ namespace CEGMarket
 
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
-
+            List<string> test = new List<string>();
+            test = LocalDBInterface.getListCategory();
 
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
@@ -156,6 +157,7 @@ namespace CEGMarket
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
+
 
             // Convert to list of string and bind
             List<string> temp2 = new List<string>();

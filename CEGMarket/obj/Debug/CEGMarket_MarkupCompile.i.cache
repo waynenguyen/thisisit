@@ -4,16 +4,28 @@
 exe
 C#
 .cs
+<<<<<<< HEAD
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\
+=======
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\
+>>>>>>> 7c4586c66ef01b2d612f6d76ca40d8d961689ee1
 CEGMarket
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 D:\Dropbox\thisisit\CEGMarket\App.xaml
 2-1509017259
 
 15-1198259890
 17792402610
+=======
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\App.xaml
+2-1509017259
+
+15675247140
+171578690305
+>>>>>>> 7c4586c66ef01b2d612f6d76ca40d8d961689ee1
 MainWindow.xaml;Simple Styles.xaml;
 
 False

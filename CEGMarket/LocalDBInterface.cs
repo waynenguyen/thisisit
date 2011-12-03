@@ -219,15 +219,18 @@ namespace CEGMarket
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
+            int number_sold_today=0;
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 int number_in_stock = (int)Int64.Parse(reader.GetValue(1).ToString());
+                number_sold_today = (int)Int64.Parse(reader.GetValue(7).ToString());
                 removed_number_in_stock = number_in_stock - removed_number_in_stock;
+                number_sold_today = number_sold_today + removed_number_in_stock;
             }
             reader.Close();
             query = "UPDATE product SET number_in_stock='" + removed_number_in_stock.ToString() +
-                            "', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
+                            "', number_sold_today='"  + number_sold_today.ToString() +"', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
             //closeConnection();
@@ -243,37 +246,49 @@ namespace CEGMarket
             // TODO: adjust price of product
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
-            if (transaction.getMemberId()!=null)
-                query = "INSERT INTO transaction(money_receive,money_change,date,member_id,total_price) VALUES('" + 
-                            transaction.getMoneyReceive() + "','" + transaction.getMoneyChange() +
-                            "','" + transaction.getDate() + "','" + transaction.getMemberId() +
-                            "','" + transaction.getTotalPrice() + "')";
-            else
-                query = "INSERT INTO transaction(money_receive,money_change,date,total_price) VALUES('" +
-                            transaction.getMoneyReceive() + "','" + transaction.getMoneyChange() +
+            bool isNew = true;
+            if (transaction.getId() != null)
+            {
+                query = "SELECT * FROM transaction WHERE id='" + transaction.getId() + "'";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    isNew = false;
+                }
+                reader.Close();
+            }
+
+
+            query = "REPLACE transaction(id, money_receive,money_change,date,total_price) VALUES('" +
+                           transaction.getId() + "','" + transaction.getMoneyReceive() + "','" + transaction.getMoneyChange() +
                             "','" + transaction.getDate() + "','" + transaction.getTotalPrice() + "')";
             command.CommandText = query;
             command.ExecuteNonQuery();
             var transactionId = command.LastInsertedId;
             
-            // add Transaction-Product relation
-            Dictionary<string, Dictionary<int,double>> shopping_bag = transaction.getShoppingBag();
-            for (int i = 0; i < shopping_bag.Count; i++)
+            // add Transaction-Product relation if this is new transaction
+            if (isNew)
             {
-                string productId = shopping_bag.ElementAt(i).Key;
-                Dictionary<int, double> amountPrice = shopping_bag.ElementAt(i).Value;
-                query = "INSERT INTO product_transaction_relation VALUES('" +
-                            productId + "','" + transactionId +
-                            "','" + amountPrice.ElementAt(0).Key +
-                            "','" + amountPrice.ElementAt(0).Value + "')";
-                command.CommandText = query;
-                command.ExecuteNonQuery();
+                Dictionary<string, Dictionary<int, double>> shopping_bag = transaction.getShoppingBag();
+                for (int i = 0; i < shopping_bag.Count; i++)
+                {
+                    string productId = shopping_bag.ElementAt(i).Key;
+                    Dictionary<int, double> amountPrice = shopping_bag.ElementAt(i).Value;
+                    query = "INSERT INTO product_transaction_relation VALUES('" +
+                                productId + "','" + transactionId +
+                                "','" + amountPrice.ElementAt(0).Key +
+                                "','" + amountPrice.ElementAt(0).Value + "')";
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
 
-                // remove number in stock of product
-                removeProductNumberInStock(productId,amountPrice.ElementAt(i).Key);
+                    // remove number in stock of product
+                    removeProductNumberInStock(productId, amountPrice.ElementAt(i).Key);
 
-                // add number of product sold today
+                    // add number of product sold today
 
+
+
+                }
             }
             //closeConnection();
         }
