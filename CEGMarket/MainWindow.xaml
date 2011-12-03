@@ -15,48 +15,23 @@
         				<ColumnDefinition Width="0*"/>
         				<ColumnDefinition/>
         			</Grid.ColumnDefinitions>
-        			<ListBox x:Name="ProductListView" Margin="8,8,251,0" Grid.ColumnSpan="2" Height="193" VerticalAlignment="Top"/>
-        			<Button Content="Get Product Sold Today" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,70,0" VerticalAlignment="Top" Width="161" Click="GetProductSoldToday"/>
-        			<Button Content="Get Product By Category" Grid.Column="1" Margin="173,0,280,140.12" VerticalAlignment="Bottom" Click="GetProductByCategory"/>
-        			<Button Content="Get Product By Manufacturer" Grid.Column="1" HorizontalAlignment="Left" Margin="8,0,0,140.12" Width="161" Click="GetProductByManufacturer" Height="21.96" VerticalAlignment="Bottom"/>
-        			<Button Content="Get Product Sold By Day" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,70,163.16" Width="161" Height="21.96" VerticalAlignment="Bottom" Click="GetProductSoldByDay"/>
-        			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="8,0,0,177.2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="96"/>
-        			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="108,0,0,177.2" VerticalAlignment="Bottom" Width="96" Click="GetCategoryList"/>
-        			<Button Content="Get Manufacturer" Grid.Column="1" Margin="208,0,298,177.2" VerticalAlignment="Bottom" Click="GetManufacturerList"/>
+        			<ListBox x:Name="ProductListView" Margin="10,45.96,0,0" Height="99.84" VerticalAlignment="Top" Grid.Column="1" d:LayoutOverrides="GridBox" HorizontalAlignment="Left" Width="270"/>
+        			<Button Content="Get Product Sold Today" Grid.Column="1" Margin="296,122.88,157,0" VerticalAlignment="Top" Click="GetProductSoldToday"/>
+        			<Button Content="Get Product By Category" Grid.Column="1" Margin="296,96.92,157,0" VerticalAlignment="Top" Click="GetProductByCategory"/>
+        			<Button Content="Get Product By Manufacturer" Grid.Column="1" Margin="296,70.96,157,0" Click="GetProductByManufacturer" Height="21.96" VerticalAlignment="Top"/>
+        			<Button Content="Get Product Sold By Day" Grid.Column="1" Margin="296,45,157,0" Height="21.96" VerticalAlignment="Top" Click="GetProductSoldByDay"/>
+        			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="10,8.88,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
+        			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="110,8.88,0,0" VerticalAlignment="Top" Width="96" Click="GetCategoryList"/>
+        			<Button Content="Get Manufacturer" Grid.Column="1" Margin="210,8.88,296,0" VerticalAlignment="Top" Click="GetManufacturerList"/>
+        			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,45.96,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="103" Text="DDMMYYYY"/>
         		</Grid>
         	</TabItem>
-        	<TabItem Header="Member" Style="{DynamicResource SimpleTabItem}">
-        		<Grid Background="#FFE5E5E5">
-        			<Button Content="Add Member" HorizontalAlignment="Left" Margin="79,162.04,0,0" VerticalAlignment="Top" Width="90"/>
-        			<TextBlock HorizontalAlignment="Left" Margin="8,27.04,0,0" TextWrapping="Wrap" Text="NRIC" VerticalAlignment="Top"/>
-        			<TextBlock HorizontalAlignment="Left" Margin="8,128.92,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
-        			<TextBlock HorizontalAlignment="Left" Margin="8,62,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
-        			<TextBlock HorizontalAlignment="Left" Margin="8,93.96,0,0" TextWrapping="Wrap" Text="Mobile" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<TextBox HorizontalAlignment="Left" Margin="59,27.04,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-        			<TextBox HorizontalAlignment="Left" Margin="59,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-        			<TextBox HorizontalAlignment="Left" Margin="59,93.96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-        			<TextBox HorizontalAlignment="Left" Margin="59,126.92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-        			<TextBox Margin="296,27.04,183,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        			<Button Content="Search Member" HorizontalAlignment="Right" Margin="0,27.04,50,0" VerticalAlignment="Top" Width="101"/>
-        			<ListBox Height="100" Margin="296,62,50,0" VerticalAlignment="Top"/>
-        		</Grid>
-        	</TabItem>
-        	<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
-        		<Grid Background="#FFE5E5E5">
-        			<Button Height="23" Margin="10,8.04,0,0" x:Name="button1" VerticalAlignment="Top" Content="Check Serial Connection" HorizontalAlignment="Left" Width="143" />
-        			<Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
-        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="10,116.04,0,0" x:Name="button2_Copy1" VerticalAlignment="Top" Width="143" />
-        			<Button Content="Send data to server" Height="23" Margin="10,64.04,0,0" x:Name="button2_Copy2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" d:LayoutOverrides="HorizontalAlignment" />
-        			<Button Content="Request data from server" Margin="10,91.04,0,0" x:Name="button2_Copy3" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" />
-        			<TextBox Margin="182.554,9.08,44.446,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="129.96"/>
-        		</Grid>
-        	</TabItem>
-        	<TabItem Header="Serial Connection" Margin="0">
-        		<Grid Background="#FFE5E5E5">
+        	<TabItem Header="Serial Connection" Style="{DynamicResource SimpleTabItem}">
+        		<Grid Background="#FFE5E5E5" Height="411.04" Width="614" d:IsLocked="True">
         			
         			<Button Content="Start Reading" Margin="0,33.96,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99"/>
         			<TextBox x:Name="statusbox" TextWrapping="Wrap" Margin="8,33.96,296.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-             ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="60.96" VerticalAlignment="Top"/>
+        				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="60.96" VerticalAlignment="Top"/>
         			<Label Content="Communication Message" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,98.92,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
         			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="12,154.84,292.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -72,6 +47,16 @@
         			</RichTextBox>
         			<GroupBox Header="GroupBox" HorizontalAlignment="Right" Margin="0,12,120.5,0" VerticalAlignment="Top" Height="83.92" Width="159.5"/>
         			<Button Content="Connect" Margin="0,129.88,32.5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ConnectSerialPort"/>
+        		</Grid>
+        	</TabItem>
+        	<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
+        		<Grid Background="#FFE5E5E5">
+        			<Button Height="23" Margin="10,8.04,0,0" x:Name="button1" VerticalAlignment="Top" Content="Check Serial Connection" HorizontalAlignment="Left" Width="143" />
+        			<Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
+        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="10,116.04,0,0" x:Name="button2_Copy1" VerticalAlignment="Top" Width="143" />
+        			<Button Content="Send data to server" Height="23" Margin="10,64.04,0,0" x:Name="button2_Copy2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" d:LayoutOverrides="HorizontalAlignment" />
+        			<Button Content="Request data from server" Margin="10,91.04,0,0" x:Name="button2_Copy3" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" />
+        			<TextBox Margin="182.554,9.08,44.446,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="129.96"/>
         		</Grid>
         	</TabItem>
         </TabControl>

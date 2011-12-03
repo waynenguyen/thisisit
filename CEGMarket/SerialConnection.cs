@@ -24,19 +24,22 @@ namespace CEGMarket
         public static string rtxtemp;
 
         // Atrributes (Phong)
-        static int bufferSize = 6;
-        static byte startSig = 0;
-        static byte paySig = 0;
-        static byte endSig = 0;
-        static int dataPadding = 3;
-        static int startPadding = 1;
-        static int endPadding = 2;
-        static int cashRegisterID = 23;
-        static int sdgf = 1;
+        const int bufferSize = 6;
+        
+        const byte startSig = 251;
+        const byte paySig = 252;
+        const byte endSig = 250;
+        const byte contSig = 253;
+
+        const int dataPadding = 0;
+        const int startPadding = 1;
+        const int endPadding = 2;
+        const int cashRegisterID = 58; //00111010B
+
         static byte[] buffer = new byte[bufferSize];
         static int idx = 0;
 
-        static int mode = 0; // 0 barcode-quantity; 1 payment; 2 end
+        static int mode = 0; // 0 barcode-quantity; 1 payment; 2 end; 3 cont trans
 
         static double subtotal = 0.0;
         static int barcode = 0;
@@ -44,6 +47,8 @@ namespace CEGMarket
 
         static double pay = 0.0;
         static double change = 0.0;
+        static Thread readingThread;
+
         /****************************************************************************************************/
         // Serial Port Related Functions
         /****************************************************************************************************/
@@ -55,8 +60,8 @@ namespace CEGMarket
         public static void openSerialConnection(string COMPort) {
 
             _serialPort = new SerialPort(COMPort, 9600, Parity.None, 8, StopBits.One);
-            _serialPort.ReadTimeout = 500;
-            _serialPort.WriteTimeout = 500;
+            //_serialPort.ReadTimeout = 500;
+            //_serialPort.WriteTimeout = 500;
 
             try
             {
@@ -68,7 +73,11 @@ namespace CEGMarket
                 MessageBox.Show("Error opening/writing to serial port: " + ex.Message, "Error!");
                 rtxtemp = "Error opening serial port" + COMPort +"/n";
             }
-            _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            readingThread = new Thread(new ThreadStart(readSerial));
+            readingThread.Start();
+            byte[] output = new byte[4];
+            output[0] = (byte)(cashRegisterID | (startPadding << 6));
+            _serialPort.Write(output, 0, 1);
         }
         public static void closeSerialConnection()
         {
@@ -87,6 +96,148 @@ namespace CEGMarket
         public static void openCashRegister(string id)
         {
             _serialPort.Write(new byte[] { 0x46 }, 0, 1);
+        }
+
+        public static void readSerial()
+        {
+            while (true)
+            {
+                byte tmp = Convert.ToByte(_serialPort.ReadByte());
+
+                Console.WriteLine("--Rec: " + tmp);
+
+                if (tmp == startSig)
+                {
+                    Console.WriteLine("Received start signal");
+                    mode = 0;
+                    idx = 0;
+
+                    //Create Transaction
+                    tempTransaction= new Transaction();
+                }
+                else if (tmp == paySig)
+                {
+                    Console.WriteLine("Received pay signal");
+                    mode = 1;
+                    idx = 0;
+                }
+                else if (tmp == endSig)
+                {
+                    Console.WriteLine("Received end signal");
+                    mode = 2;
+                }
+                else if (tmp == contSig)
+                {
+                    Console.WriteLine("Received cont signal");
+                    mode = 3;
+                    idx = 0;
+                }
+
+                if (idx < bufferSize)
+                {
+                    int lowerNibble = tmp & 15;
+                    int higherNibble = tmp >> 4;
+
+                    if (lowerNibble < 10 && lowerNibble >= 0
+                        && higherNibble < 10 && higherNibble >= 0)
+                    {
+                        buffer[idx++] = tmp;
+
+                        if (idx == 6) // get full data
+                        {
+                            // full buffer -> get enough data
+                            //    mode = 0: barcode and quantity
+                            //    mode = 1: payment and change
+                            //    mode = 2: payment and change
+                            if (mode == 0)
+                            {
+                                // get barcode and quantity
+                                convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out barcode);
+                                convertBCDToNumber(new byte[] { buffer[3], buffer[4], buffer[5] }, out quantity);
+
+                                Console.WriteLine("Received raw: " + buffer[0] + "." + buffer[1] + "." + buffer[2]
+                                                                   + "." + buffer[3] + "." + buffer[4] + "." + buffer[5]);
+                                Console.WriteLine("Received: Barcode: " + barcode + " Quantity: " + quantity);
+                                
+                                //Get Price of product with barcode
+                                Product temp2 = LocalDBInterface.getProduct(Convert.ToString(barcode));
+                                double price = 0;
+                                if (temp2 == null) price = 0;
+                                else
+                                {
+                                    price = temp2.getPrice();
+                                    // Add product to transaction
+                                    tempTransaction.insertProductIntoShoppingBag(Convert.ToString(barcode), quantity, price * quantity);
+                                }
+                            
+
+                                subtotal += quantity * price; // suppose 10 dollars per item
+                                                      
+                                int tmpSubtt = (int)(subtotal * 100);
+                                byte[] output = new byte[4];
+                                convertToBCD(tmpSubtt, out output, dataPadding);
+
+                                Console.Write("Sent: Subtotal: " + subtotal + " in BCD: ");
+                                
+                                for (int j = 3; j >= 0; j--)
+                                {
+                                    string tmpBCDByte;
+                                    convertToBinary(out tmpBCDByte, output[j]);
+                                    Console.Write(tmpBCDByte + ", ");
+                                }
+                                Console.WriteLine();
+
+                                // send back subtotal
+                                _serialPort.Write(output, 0, 4);
+
+                                idx = 0;
+                            }
+                            else if (mode == 1 || mode == 2)// if (mode == 1 || mode == 2)
+                            {
+                                int tmpPay = 0;
+                                // get payment and change
+                                convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out tmpPay);
+                                pay = ((double)tmpPay) / 100;
+                                convertBCDToNumber(new byte[] { buffer[3], buffer[4], buffer[5] }, out tmpPay);
+                                change = ((double)tmpPay) / 100;
+
+                                Console.WriteLine("Received: pay: " + pay + " change: " + change);
+                                
+                                {
+                                    // send ack
+                                    byte[] output = new byte[4];
+                                    output[0] = output[1] = output[2] = output[3] = 63;
+                                    Console.WriteLine("Ack sent");
+                                    _serialPort.Write(output, 0, 4);
+
+                                    idx = 0;
+                                    mode = 0;
+                                    subtotal = 0.0;
+
+                                    //Add Transaction
+                                    LocalDBInterface.addTransaction(tempTransaction);
+                                }
+                            }
+                        } // if idx == 6
+                        else if (mode == 3 && idx == 3) // continue transaction
+                        {
+                            int transID;
+                            convertBCDToNumber(new byte[] { buffer[0], buffer[1], buffer[2] }, out transID);
+
+                            Console.WriteLine("Recieved: transID: " + transID);
+
+                            int subtotalInt = 12345;
+                            byte[] output = new byte[4];
+                            convertToBCD(subtotalInt, out output, dataPadding);
+
+                            _serialPort.Write(output, 0, 4); // sent back subtotal
+                            
+                            idx = 0;
+                            mode = 0;
+                        }
+                    } // if data is bcd (data)
+                }
+            }
         }
         public static void DataReceived(object sender,SerialDataReceivedEventArgs e)
 
@@ -293,6 +444,26 @@ namespace CEGMarket
         /****************************************************************************************************/
         // Conversion for LED Related Functions (by Phong)
         /****************************************************************************************************/
+        static void convertToBinary(out string binarystr, int number)
+        {
+            int r;
+
+            binarystr = "";
+
+            if (number == 0)
+            {
+                binarystr = "0";
+                return;
+            }
+
+            while (number != 0)
+            {
+                r = number % 2;
+                binarystr = (r == 0 ? "0" : "1") + binarystr;
+                number /= 2;
+            }
+        }
+        
         static void convertBCDToNumber(byte[] input, out int number)
         {
             // input[0]: LSB

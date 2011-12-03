@@ -72,7 +72,19 @@ namespace CEGMarket
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
             //SerialConnection.stringToByte("ngotuanvu");
-
+            //Transaction tempTransaction = new Transaction();
+            //string barcode = "123445";
+            //int quantity = 1;
+            //Product temp2 = LocalDBInterface.getProduct(Convert.ToString(barcode));
+            //double price = 0;
+            //if (temp2 == null) price = 0;
+            //else
+            //{
+            //    price = temp2.getPrice();
+            //    // Add product to transaction
+            //    tempTransaction.insertProductIntoShoppingBag(Convert.ToString(barcode), quantity, price * quantity);
+            //}
+            //LocalDBInterface.addTransaction(tempTransaction);
 		}
 
         private void ConvertToByte(object sender, System.Windows.RoutedEventArgs e)
@@ -101,6 +113,7 @@ namespace CEGMarket
                 //MessageBox.Show("There are no COM Ports detected on this computer.\nPlease install a COM Port and restart this app.", "No COM Ports Installed");
                 rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + "There are no COM Ports detected on this computer. Please install a COM Port and restart this app.\n");
                 //this.Close();
+                
             }
         }
         private void openSerialPort()
@@ -144,10 +157,15 @@ namespace CEGMarket
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
+<<<<<<< HEAD
 
+=======
+>>>>>>> b37246863fa2f7fe8b591eb8618198940139fb2f
 
             // Convert to list of string and bind
-            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
+            List<string> temp2 = new List<string>();
+            temp2 = LocalDBInterface.convertListProductToName(temp);
+            ProductListView.ItemsSource = temp2;
         }
 
 
@@ -158,24 +176,34 @@ namespace CEGMarket
             temp = LocalDBInterface.getProductByCategory(CatManListBox.Text);
 
             // Convert to list of string and bind
-            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
+            List<string> temp2 = new List<string>();
+            temp2 = LocalDBInterface.convertListProductToName(temp);
+            ProductListView.ItemsSource = temp2;
         }
 
         private void GetProductByManufacturer(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
-            // TODO: Add event handler implementation here.
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductByManufacturer(CatManListBox.Text);
 
             // Convert to list of string and bind
-            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
+            List<string> temp2 = new List<string>();
+            temp2= LocalDBInterface.convertListProductToName(temp);
+            ProductListView.ItemsSource = temp2;
         }
 
         private void GetProductSoldByDay(object sender, System.Windows.RoutedEventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            // Create and get list of Products
+            List<Product> temp = new List<Product>();
+            temp = LocalDBInterface.getProductDayReport(DateTB.Text);
+
+            // Convert to list of string and bind
+            List<string> temp2 = new List<string>();
+            temp2 = LocalDBInterface.convertListProductToName(temp);
+            ProductListView.ItemsSource = temp2;
             
         }
 
@@ -184,17 +212,19 @@ namespace CEGMarket
             // TODO: Add event handler implementation here.
             // CatManListBox.ItemsSource = null;
 
+            List<string> temp = new List<string>();
+            temp = LocalDBInterface.getListCategory();
             // Get list of Manufacturer and binding
-            CatManListBox.ItemsSource = LocalDBInterface.getListCategory();
+            CatManListBox.ItemsSource = temp;
         }
 
         private void GetManufacturerList(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
-            // CatManListBox.ItemsSource = null;
-
+            List<string> temp = new List<string>();
+            temp = LocalDBInterface.getListManufacturer();
             // Get list of Manufacturer and binding
-            CatManListBox.ItemsSource = LocalDBInterface.getListManufacturer();
+            CatManListBox.ItemsSource = temp;
             
         }
 
