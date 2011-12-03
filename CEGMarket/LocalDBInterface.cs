@@ -219,15 +219,17 @@ namespace CEGMarket
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
+            int number_sold_today = removed_number_in_stock;
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 int number_in_stock = (int)Int64.Parse(reader.GetValue(1).ToString());
                 removed_number_in_stock = number_in_stock - removed_number_in_stock;
+                number_sold_today = number_sold_today + removed_number_in_stock;
             }
             reader.Close();
             query = "UPDATE product SET number_in_stock='" + removed_number_in_stock.ToString() +
-                            "', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
+                            "', number_sold_today='"  + number_sold_today.ToString() +"', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
             //closeConnection();
@@ -274,6 +276,8 @@ namespace CEGMarket
 
                 // add number of product sold today
 
+
+                
             }
             //closeConnection();
         }
