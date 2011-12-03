@@ -31,7 +31,7 @@ namespace CEGMarket
             // Insert code required on object creation below this point.
             CEGMarketSystem CEGSystem = new CEGMarketSystem();
             //CEGSystem.CalculateProductProfit("123");
-
+            LocalDBInterface.openConnection();
             //// testing protocols
             ////LocalDBInterface.openConnection();
             //Product newP = new Product("333333", "beer", "F&B", "Sai Gon", 350, 333);
@@ -118,6 +118,7 @@ namespace CEGMarket
         {
             // TODO: Add event handler implementation here.
             //SerialConnection.closeSerialConnection();
+            LocalDBInterface.closeConnection();
         }
 
         private void SendToLED(object sender, System.Windows.RoutedEventArgs e)
@@ -135,42 +136,39 @@ namespace CEGMarket
 
         private void GetProductSoldToday(object sender, System.Windows.RoutedEventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            // TODO: Add event handler implementation here.
             //Clear Product List View
             //ProductListView.Items.Clear();
 
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
-<<<<<<< HEAD
 
             // Convert to list of string and bind
             ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
-=======
-          
->>>>>>> 5546a1065b4dc913ca4713f3b7fefc1355ff6595
         }
+
 
         private void GetProductByCategory(object sender, System.Windows.RoutedEventArgs e)
         {
+            // Create and get list of Products
+            List<Product> temp = new List<Product>();
+            temp = LocalDBInterface.getProductByCategory(CatManListBox.Text);
+
+            // Convert to list of string and bind
+            ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
+        }
+
+        private void GetProductByManufacturer(object sender, System.Windows.RoutedEventArgs e)
+        {
         	// TODO: Add event handler implementation here.
+            // TODO: Add event handler implementation here.
             // Create and get list of Products
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductByManufacturer(CatManListBox.Text);
 
             // Convert to list of string and bind
             ProductListView.ItemsSource = LocalDBInterface.convertListProductToName(temp);
-        }
-
-        private void GetProduct(object sender, System.Windows.RoutedEventArgs e)
-        {
-        	// TODO: Add event handler implementation here.
-        }
-
-        private void GetProductByManufacturer(object sender, System.Windows.RoutedEventArgs e)
-        {
-        	// TODO: Add event handler implementation here.
-
         }
 
         private void GetProductSoldByDay(object sender, System.Windows.RoutedEventArgs e)
@@ -182,7 +180,7 @@ namespace CEGMarket
         private void GetCategoryList(object sender, System.Windows.RoutedEventArgs e)
         {
             // TODO: Add event handler implementation here.
-            CatManListBox.ItemsSource = null;
+            // CatManListBox.ItemsSource = null;
 
             // Get list of Manufacturer and binding
             CatManListBox.ItemsSource = LocalDBInterface.getListCategory();
@@ -191,7 +189,7 @@ namespace CEGMarket
         private void GetManufacturerList(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
-            CatManListBox.ItemsSource = null;
+            // CatManListBox.ItemsSource = null;
 
             // Get list of Manufacturer and binding
             CatManListBox.ItemsSource = LocalDBInterface.getListManufacturer();

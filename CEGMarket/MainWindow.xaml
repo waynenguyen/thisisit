@@ -17,8 +17,8 @@
         			</Grid.ColumnDefinitions>
         			<ListBox x:Name="ProductListView" Margin="8,8,251,0" Grid.ColumnSpan="2" Height="193" VerticalAlignment="Top"/>
         			<Button Content="Get Product Sold Today" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,70,0" VerticalAlignment="Top" Width="161" Click="GetProductSoldToday"/>
-        			<Button Content="Get Product By Category" Grid.Column="1" HorizontalAlignment="Right" Margin="0,174,70,0" VerticalAlignment="Top" Width="161" Click="GetProductByCategory"/>
-        			<Button Content="Get Product By Manufacturer" Grid.Column="1" HorizontalAlignment="Right" Margin="0,199.96,70,189.12" Width="161" Click="GetProductByManufacturer"/>
+        			<Button Content="Get Product By Category" Grid.Column="1" Margin="173,0,280,140.12" VerticalAlignment="Bottom" Click="GetProductByCategory"/>
+        			<Button Content="Get Product By Manufacturer" Grid.Column="1" HorizontalAlignment="Left" Margin="8,0,0,140.12" Width="161" Click="GetProductByManufacturer" Height="21.96" VerticalAlignment="Bottom"/>
         			<Button Content="Get Product Sold By Day" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,70,163.16" Width="161" Height="21.96" VerticalAlignment="Bottom" Click="GetProductSoldByDay"/>
         			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="8,0,0,177.2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="96"/>
         			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="108,0,0,177.2" VerticalAlignment="Bottom" Width="96" Click="GetCategoryList"/>
