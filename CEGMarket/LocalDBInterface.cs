@@ -47,8 +47,19 @@ namespace CEGMarket
         }
         // PRODUCT RELATED INTERFACE
 
-        // TODO : add reset is_sold_today and number_sold_today
 
+
+        public static List<string> convertListProductToName(List<Product> listP)
+        {
+            List<string> listName = new List<string>();
+            for (int i = 0; i < listP.Count; i++)
+            {
+                listName.Add(listP.ElementAt(i).getName());
+            }
+            return listName;
+        }
+
+        // TODO : add reset is_sold_today and number_sold_today
         public static void addProduct(Product newProduct)
         {
             openConnection();
@@ -451,6 +462,42 @@ namespace CEGMarket
             return productSellInfo;
         }
 
+        public static List<string> getListManufacturer()
+        {
+            List<string> listM = new List<string>();
+            openConnection();
+            MySqlCommand command = l_DBConn.CreateCommand();
+            String query = "SELECT distinct manufacturer FROM `local_market`.`product`";
+            command.CommandText = query;
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                string name = reader.GetValue(0).ToString();
+                listM.Add(name);
+            }
+            reader.Close();
+            closeConnection();
+
+            return listM;
+        }
+
+        public static List<string> getListCategory()
+        {
+            List<string> listC = new List<string>();
+            openConnection();
+            MySqlCommand command = l_DBConn.CreateCommand();
+            String query = "SELECT distinct category FROM `local_market`.`product`";
+            command.CommandText = query;
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {                
+                string name = reader.GetValue(0).ToString();
+                listC.Add(name);
+            }
+            reader.Close();
+            closeConnection();
+            return listC;            
+        }
 
     }
 }
