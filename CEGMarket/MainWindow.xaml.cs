@@ -86,7 +86,7 @@ namespace CEGMarket
         {
             int index = 0;
             string[] nameArray = SerialConnection.GetSerialPorts();
-            //cmbPortName.Items.Clear();
+            cmbPortName.Items.Clear();
             while (index <= nameArray.GetUpperBound(0))
             {
                 cmbPortName.Items.Add(nameArray[index]);
@@ -131,6 +131,35 @@ namespace CEGMarket
         	// TODO: Add event handler implementation here.
             SerialConnection.openSerialConnection(cmbPortName.Text);
             rtbTxData.AppendText(String.Format("{0:dd.MM.yy HH:mm:ss }", DateTime.Now) + SerialConnection.rtxtemp);
+        }
+
+        private void GetProductSoldToday(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            List<Product> temp = new List<Product>();
+            temp = LocalDBInterface.getProductSoldToday();
+            ProductListView.ItemsSource = temp.;
+        }
+
+        private void GetProductByCategory(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+        }
+
+        private void GetProduct(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+        }
+
+        private void GetProductByManufacturer(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+        }
+
+        private void GetProductSoldByDay(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            
         }
 
     }

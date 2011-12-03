@@ -11,8 +11,17 @@
         <TabControl Style="{DynamicResource SimpleTabControl}">
         	<TabItem Header="Product" Style="{DynamicResource SimpleTabItem}" Height="21.96" VerticalAlignment="Top">
         		<Grid Background="#FFE5E5E5">
-        			<Button Content="Update Product Database" Height="23" HorizontalAlignment="Left" Margin="6,8.04,0,0" x:Name="button2_Copy" VerticalAlignment="Top" Width="143" />
-        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="6,52.04,0,0" x:Name="button2_Copy4" VerticalAlignment="Top" Width="143" />
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="0.05*"/>
+        				<ColumnDefinition Width="0.95*"/>
+        			</Grid.ColumnDefinitions>
+        			<Button Content="Update Product Database" Height="23" HorizontalAlignment="Left" Margin="-24.5,8.04,0,0" x:Name="button2_Copy" VerticalAlignment="Top" Width="143" Grid.Column="1" />
+        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="-24.5,52.04,0,0" x:Name="button2_Copy4" VerticalAlignment="Top" Width="143" Grid.Column="1" />
+        			<ListBox x:Name="ProductListView" Margin="8,148.04,251,70" Grid.ColumnSpan="2"/>
+        			<Button Content="Get Product Sold Today" Grid.Column="1" HorizontalAlignment="Right" Margin="0,148.04,70,0" VerticalAlignment="Top" Width="161" Click="GetProductSoldToday"/>
+        			<Button Content="Get Product By Category" Grid.Column="1" HorizontalAlignment="Right" Margin="0,174,70,0" VerticalAlignment="Top" Width="161" Click="GetProductByCategory"/>
+        			<Button Content="Get Product By Manufacturer" Grid.Column="1" HorizontalAlignment="Right" Margin="0,199.96,70,189.12" Width="161" Click="GetProductByManufacturer"/>
+        			<Button Content="Get Product Sold By Day" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,70,163.16" Width="161" Height="21.96" VerticalAlignment="Bottom" Click="GetProductSoldByDay"/>
         		</Grid>
         	</TabItem>
         	<TabItem Header="Member" Style="{DynamicResource SimpleTabItem}">
