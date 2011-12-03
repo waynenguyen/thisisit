@@ -138,7 +138,7 @@ namespace CEGMarket
         	// TODO: Add event handler implementation here.
             List<Product> temp = new List<Product>();
             temp = LocalDBInterface.getProductSoldToday();
-            ProductListView.ItemsSource = temp.;
+          
         }
 
         private void GetProductByCategory(object sender, System.Windows.RoutedEventArgs e)

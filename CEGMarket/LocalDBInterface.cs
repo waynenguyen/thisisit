@@ -25,25 +25,25 @@ namespace CEGMarket
     static class LocalDBInterface
     {
         private static MySqlConnection l_DBConn;
-        private static void openConnection()
+        public static void openConnection()
         {
             l_DBConn = new MySqlConnection();
             l_DBConn.ConnectionString = Properties.Settings.Default.DBConnectionString;
             l_DBConn.Open();
         }
-        private static void closeConnection()
+        public static void closeConnection()
         {
             l_DBConn.Close();
         }
 
         public static void reset()
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "UPDATE product SET is_sold_today= 'FALSE', number_in_stock = 0, number_sold_today = 0";
             command.CommandText = query;
             command.ExecuteNonQuery();
-            closeConnection();
+            //closeConnection();
         }
         // PRODUCT RELATED INTERFACE
 
@@ -62,7 +62,7 @@ namespace CEGMarket
         // TODO : add reset is_sold_today and number_sold_today
         public static void addProduct(Product newProduct)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             try
             {
@@ -73,12 +73,12 @@ namespace CEGMarket
                 command.ExecuteNonQuery();
             }
             catch { };
-            closeConnection();
+            //closeConnection();
         }
 
         public static void addListProduct(List<Product> listProduct)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             for (int i = 0; i < listProduct.Count; i++)
             {
@@ -93,11 +93,11 @@ namespace CEGMarket
                 }
                 catch { };
             }
-            closeConnection();
+            //closeConnection();
         }
         public static Product getProduct(String barcode)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
@@ -116,12 +116,12 @@ namespace CEGMarket
                 return (newProduct);
             }
             reader.Close();
-            closeConnection();
+            //closeConnection();
             return null;
         }
         public static void modifyProduct(Product changedProduct)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             try
             {
@@ -133,12 +133,12 @@ namespace CEGMarket
                 command.ExecuteNonQuery();
             }
             catch { };
-            closeConnection();
+            //closeConnection();
         }
 
         public static List<Product> getProductSoldToday()
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -156,13 +156,13 @@ namespace CEGMarket
             {
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
         public static void addProductNumberSoldToday(string barcode, int number_sold_today)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
@@ -177,23 +177,23 @@ namespace CEGMarket
                             "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
-            closeConnection();
+            //closeConnection();
         }
         public static void setProductNumberInStock(string barcode, int number_in_stock)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "UPDATE product SET number_in_stock='" + number_in_stock +
                             "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
-            closeConnection();
+            //closeConnection();
         }
 
         // means set current number_in_stock += added_number_in_stock
         public static void addProductNumberInStock(string barcode, int added_number_in_stock)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
@@ -208,14 +208,14 @@ namespace CEGMarket
                             "' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
-            closeConnection();
+            //closeConnection();
         }
 
 
 
         public static void removeProductNumberInStock(string barcode, int removed_number_in_stock)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT * FROM product WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
@@ -230,7 +230,7 @@ namespace CEGMarket
                             "', is_sold_today='TRUE' WHERE barcode ='" + barcode + "'";
             command.CommandText = query;
             command.ExecuteNonQuery();
-            closeConnection();
+            //closeConnection();
         }
         
 
@@ -239,7 +239,7 @@ namespace CEGMarket
         // TRANSACTION RELATED INTERFACE
         public static void addTransaction(Transaction transaction)
         {
-            openConnection();
+            //openConnection();
             // TODO: adjust price of product
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -275,12 +275,12 @@ namespace CEGMarket
                 // add number of product sold today
 
             }
-            closeConnection();
+            //closeConnection();
         }
 
         public static Transaction getTransaction(string transactionId)
         {
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
             query = "SELECT * FROM transaction WHERE id='" + transactionId + "'";
@@ -308,7 +308,7 @@ namespace CEGMarket
                 transaction.insertProductIntoShoppingBag(product_id, amount, total_price);
             }
             reader.Close();
-            closeConnection();
+            //closeConnection();
             return transaction;
         }
 
@@ -318,7 +318,7 @@ namespace CEGMarket
         // dayValue should have type "YYYY-MM-DD"
         public static List<Product> getProductDayReport(string dayValue)
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -337,7 +337,7 @@ namespace CEGMarket
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
 
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
@@ -356,7 +356,7 @@ namespace CEGMarket
         // 
         public static List<Product> getProductByCategory(string categoryName)
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -375,7 +375,7 @@ namespace CEGMarket
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
 
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
@@ -383,7 +383,7 @@ namespace CEGMarket
         // TODO:
         public static List<Product> getCategoryDayReport(string categoryName, string dayValue)
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -402,7 +402,7 @@ namespace CEGMarket
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
 
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
@@ -412,7 +412,7 @@ namespace CEGMarket
 
          public static List<Product> getProductByManufacturer(string manufacturerName)
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -431,7 +431,7 @@ namespace CEGMarket
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
 
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
@@ -439,7 +439,7 @@ namespace CEGMarket
         // TODO:
         public static List<Product> getManufacturerDayReport(string manufacturerName, string dayValue)
         {
-            openConnection();
+            //openConnection();
             List<Product> productSellInfo = new List<Product>();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = null;
@@ -458,14 +458,14 @@ namespace CEGMarket
                 productSellInfo.Add(getProduct(barcode_list.ElementAt(i)));
             }
 
-            closeConnection();
+            //closeConnection();
             return productSellInfo;
         }
 
         public static List<string> getListManufacturer()
         {
             List<string> listM = new List<string>();
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT distinct manufacturer FROM `local_market`.`product`";
             command.CommandText = query;
@@ -476,7 +476,7 @@ namespace CEGMarket
                 listM.Add(name);
             }
             reader.Close();
-            closeConnection();
+            //closeConnection();
 
             return listM;
         }
@@ -484,7 +484,7 @@ namespace CEGMarket
         public static List<string> getListCategory()
         {
             List<string> listC = new List<string>();
-            openConnection();
+            //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
             String query = "SELECT distinct category FROM `local_market`.`product`";
             command.CommandText = query;
@@ -495,7 +495,7 @@ namespace CEGMarket
                 listC.Add(name);
             }
             reader.Close();
-            closeConnection();
+            //closeConnection();
             return listC;            
         }
 
