@@ -467,7 +467,7 @@ namespace CEGMarket
             List<string> listM = new List<string>();
             //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
-            String query = "SELECT distinct manufacturer FROM `local_market`.`product`";
+            String query = "SELECT distinct manufacturer FROM product";
             command.CommandText = query;
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -486,7 +486,7 @@ namespace CEGMarket
             List<string> listC = new List<string>();
             //openConnection();
             MySqlCommand command = l_DBConn.CreateCommand();
-            String query = "SELECT distinct category FROM `local_market`.`product`";
+            String query = "SELECT distinct category FROM product";
             command.CommandText = query;
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
