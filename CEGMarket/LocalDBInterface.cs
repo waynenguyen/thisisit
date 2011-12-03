@@ -47,8 +47,19 @@ namespace CEGMarket
         }
         // PRODUCT RELATED INTERFACE
 
-        // TODO : add reset is_sold_today and number_sold_today
 
+
+        public static List<string> convertListProductToName(List<Product> listP)
+        {
+            List<string> listName = new List<string>();
+            for (int i = 0; i < listP.Count; i++)
+            {
+                listName.Add(listP.ElementAt(i).getName());
+            }
+            return listName;
+        }
+
+        // TODO : add reset is_sold_today and number_sold_today
         public static void addProduct(Product newProduct)
         {
             openConnection();
