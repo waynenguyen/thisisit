@@ -23,6 +23,8 @@ namespace CEGMarket
         static Product tempProduct;
         public static string rtxtemp;
 
+        static int receiveStartSig = 0;
+
         // Atrributes (Phong)
         const int bufferSize = 6;
         
@@ -78,6 +80,7 @@ namespace CEGMarket
             byte[] output = new byte[4];
             output[0] = (byte)(cashRegisterID | (startPadding << 6));
             _serialPort.Write(output, 0, 1);
+            receiveStartSig = 0;
         }
         public static void closeSerialConnection()
         {
@@ -106,11 +109,13 @@ namespace CEGMarket
 
                 Console.WriteLine("--Rec: " + tmp);
 
-                if (tmp == startSig)
+                if (tmp == startSig && receiveStartSig == 0)
                 {
+                    receiveStartSig = 1;
                     Console.WriteLine("Received start signal");
                     mode = 0;
                     idx = 0;
+                    subtotal = 0.0;
 
                     //Create Transaction
                     tempTransaction= new Transaction();
@@ -123,11 +128,13 @@ namespace CEGMarket
                 }
                 else if (tmp == endSig)
                 {
+                    receiveStartSig = 0;
                     Console.WriteLine("Received end signal");
                     mode = 2;
                 }
                 else if (tmp == contSig)
                 {
+                    receiveStartSig = 1;
                     Console.WriteLine("Received cont signal");
                     mode = 3;
                     idx = 0;
@@ -212,7 +219,6 @@ namespace CEGMarket
 
                                     idx = 0;
                                     mode = 0;
-                                    subtotal = 0.0;
 
                                     //Add Transaction
                                     DateTime time = DateTime.Now;              // Use current time
@@ -234,11 +240,12 @@ namespace CEGMarket
 
                             Console.WriteLine("Recieved: transID: " + transID);
                             int subtotalInt = 0;
-                            Transaction temp3 = LocalDBInterface.getTransaction(Convert.ToString(transID));
-                            if (temp3 == null) subtotalInt = 0;
+                            tempTransaction = LocalDBInterface.getTransaction(Convert.ToString(transID));
+                            if (tempTransaction == null) subtotalInt = 0;
                             else
                             {
-                                subtotalInt = (int)(temp3.getTotalPrice()*100);
+                                subtotal = tempTransaction.getTotalPrice();
+                                subtotalInt = (int)(tempTransaction.getTotalPrice() * 100);
                                 byte[] output = new byte[4];
                                 convertToBCD(subtotalInt, out output, dataPadding);
                                 _serialPort.Write(output, 0, 4); // sent back subtotal
