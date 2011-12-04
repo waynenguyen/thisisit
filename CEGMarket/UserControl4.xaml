@@ -1,0 +1,14 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="CEGMarket.UserControl4"
+	x:Name="UserControl"
+	d:DesignWidth="112.539" d:DesignHeight="52.04">
+
+	<Grid x:Name="LayoutRoot">
+		<TextBlock TextWrapping="Wrap" Text="Logout" FontSize="32" Foreground="#FFFBA439" FontFamily="Segoe UI Light"/>
+	</Grid>
+</UserControl>

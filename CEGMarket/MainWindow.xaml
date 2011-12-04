@@ -1,75 +1,164 @@
 ﻿<Window
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:CEGMarket" mc:Ignorable="d"
 	x:Class="CEGMarket.MainWindow"
 	x:Name="Window"
 	Title="MainWindow"
-	Width="640" Height="480" Closed="Exit_App">
+	Width="1000" Height="600" Closed="Exit_App">
+	<Window.Resources>
+		<Style x:Key="ReturnButton" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<local:UserControl1/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="23.353" Width="52.123"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="Main Menu Product Manager" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<local:UserControl2/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="70.48" Width="385.5"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="Main Menu Device Manager" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<local:UserControl3/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="68.98" Width="360.974"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="Main Menu Logout" TargetType="{x:Type Button}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<local:UserControl4/>
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Height="34" Width="95.623"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="True"/>
+							<Trigger Property="IsDefaulted" Value="True"/>
+							<Trigger Property="IsMouseOver" Value="True"/>
+							<Trigger Property="IsPressed" Value="True"/>
+							<Trigger Property="IsEnabled" Value="False"/>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
 
-	<Grid x:Name="LayoutRoot">
-        <TabControl Style="{DynamicResource SimpleTabControl}">
-        	<TabItem Header="Product" Style="{DynamicResource SimpleTabItem}" Height="21.96" VerticalAlignment="Top">
-        		<Grid Background="#FFE5E5E5">
-        			<Grid.ColumnDefinitions>
-        				<ColumnDefinition Width="0*"/>
-        				<ColumnDefinition/>
-        			</Grid.ColumnDefinitions>
-        			<ListBox x:Name="ProductListView" Margin="10,45.96,0,0" Height="99.84" VerticalAlignment="Top" Grid.Column="1" d:LayoutOverrides="GridBox" HorizontalAlignment="Left" Width="270"/>
-        			<Button Content="Get Product Sold Today" Grid.Column="1" Margin="296,122.88,157,0" VerticalAlignment="Top" Click="GetProductSoldToday"/>
-        			<Button Content="Get Product By Category" Grid.Column="1" Margin="296,96.92,157,0" VerticalAlignment="Top" Click="GetProductByCategory"/>
-        			<Button Content="Get Product By Manufacturer" Grid.Column="1" Margin="296,70.96,157,0" Click="GetProductByManufacturer" Height="21.96" VerticalAlignment="Top"/>
-        			<Button Content="Get Product Sold By Day" Grid.Column="1" Margin="296,45,157,0" Height="21.96" VerticalAlignment="Top" Click="GetProductSoldByDay"/>
-        			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="10,8.88,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96"/>
-        			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="110,8.88,0,0" VerticalAlignment="Top" Width="96" Click="GetCategoryList"/>
-        			<Button Content="Get Manufacturer" Grid.Column="1" Margin="210,8.88,296,0" VerticalAlignment="Top" Click="GetManufacturerList"/>
-        			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,45.96,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="103" Text="DDMMYYYY"/>
-        			<ListView Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="110,0,0,77" VerticalAlignment="Bottom" Width="100">
-        				<ListView.View>
-        					<GridView>
-          <GridViewColumn Width="140" Header="Game Name" 
-             DisplayMemberBinding="{Binding GameName}"  />
-          <GridViewColumn Width="140" Header="Creator"  
-             DisplayMemberBinding="{Binding Creator}" />
-          <GridViewColumn Width="140" Header="Publisher" 
-             DisplayMemberBinding="{Binding Publisher}" />
-        </GridView>
-        				</ListView.View>
-        			</ListView>
-        		</Grid>
-        	</TabItem>
-        	<TabItem Header="Serial Connection" Style="{DynamicResource SimpleTabItem}">
-        		<Grid Background="#FFE5E5E5" Height="411.04" Width="614" d:IsLocked="True">
-        			
-        			<Button Content="Start Reading" Margin="0,33.96,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99"/>
-        			<TextBox x:Name="statusbox" TextWrapping="Wrap" Margin="8,33.96,296.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-        				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="60.96" VerticalAlignment="Top"/>
-        			<Label Content="Communication Message" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<Label Content="Input Message (Testing)" HorizontalAlignment="Left" Margin="8,98.92,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="12,154.84,292.447,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-        				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="26.96" VerticalAlignment="Top"/>
-        			<Button Content="Send to LED" Margin="0,155.84,181,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Right" Width="99" Click="SendToLED" />
-        			<ComboBox HorizontalAlignment="Left" Margin="112.637,128.88,0,0" VerticalAlignment="Top" Width="88"/>
-        			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="12,124.88,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<ComboBox x:Name="cmbPortName" Margin="301,128.88,225,0" VerticalAlignment="Top"/>
-        			<Label Content="Serial Port" HorizontalAlignment="Left" Margin="232.98,124.88,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-        			<Button Content="Get Ports" Margin="0,129.88,120.5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="GetSerialPorts"/>
-        			<RichTextBox x:Name="rtbTxData" Margin="12,199.04,8,31">
-        				<FlowDocument/>
-        			</RichTextBox>
-        			<GroupBox Header="GroupBox" HorizontalAlignment="Right" Margin="0,12,120.5,0" VerticalAlignment="Top" Height="83.92" Width="159.5"/>
-        			<Button Content="Connect" Margin="0,129.88,32.5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ConnectSerialPort"/>
-        		</Grid>
-        	</TabItem>
-        	<TabItem Header="General" Style="{DynamicResource SimpleTabItem}">
-        		<Grid Background="#FFE5E5E5">
-                    <Button Content="Get Transaction Info" HorizontalAlignment="Left" Margin="10,35.04,0,0" x:Name="button2" Width="143" Height="25" VerticalAlignment="Top" />
-        			<Button Content="Calculate Profit" Height="23" HorizontalAlignment="Left" Margin="10,116.04,0,0" x:Name="button2_Copy1" VerticalAlignment="Top" Width="143" />
-        			<Button Content="Send data to server" Height="23" Margin="10,64.04,0,0" x:Name="button2_Copy2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" d:LayoutOverrides="HorizontalAlignment" />
-        			<Button Content="Request data from server" Margin="10,91.04,0,0" x:Name="button2_Copy3" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" />
-        			<TextBox Margin="182.554,9.08,44.446,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="129.96"/>
-        		</Grid>
-        	</TabItem>
-        </TabControl>
+	<Grid x:Name="LayoutRoot" Width="1000" Height="600">
+        <Image Margin="0,-0.667,0,6.917" Source="Graphic_Background_Main.jpg" Stretch="Fill" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" ContextMenuClosing="Image_ContextMenuClosing"/>
+        <Grid x:Name="Device_Manager" Height="411.04" Margin="228.5,124.167,198,64.793">
+			<Image Margin="-15,-10.5,0,8" Source="Graphic_SubMenu_background.gif" Stretch="Fill" Opacity="0.68"/>
+			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="25,102.928,276.687,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="34.96" VerticalAlignment="Top" FontSize="18.667" FontFamily="Segoe UI Light" Opacity="0.8"/>
+			<Button Content="Send to LED" Margin="0,102.928,147,0" VerticalAlignment="Top" Height="34.96" HorizontalAlignment="Right" Width="113.404" Click="SendToLED" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" />
+			<ComboBox HorizontalAlignment="Right" Margin="0,102.928,30.364,0" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Height="29.059" VerticalAlignment="Top"/>
+			<Label Content="Cash Register ID" HorizontalAlignment="Left" Margin="438.653,68.361,0,0" VerticalAlignment="Top" FontSize="13.333" FontFamily="Segoe UI Semibold"/>
+			<ComboBox x:Name="cmbPortName" Margin="0,163.72,30.364,0" HorizontalAlignment="Right" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Height="26.96" VerticalAlignment="Top"/>
+			<Label Content="Serial Port" HorizontalAlignment="Left" Margin="455.98,133.486,0,0" FontSize="13.333" FontFamily="Segoe UI Semibold" VerticalAlignment="Top"/>
+			<Button Content="Get Ports" Margin="0,198.92,30.364,177.16" HorizontalAlignment="Right" Width="102.136" Click="GetSerialPorts" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}"/>
+			<RichTextBox x:Name="rtbTxData" Margin="25,151.949,147,54.947" Opacity="0.8">
+				<FlowDocument/>
+			</RichTextBox>
+			<Button Content="Connect" Margin="0,0,30.364,138.2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="102.136" Click="ConnectSerialPort" Height="34.96" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}"/>
+			<Ellipse HorizontalAlignment="Left" Height="37" Margin="25,32.833,0,0" Stroke="Black" VerticalAlignment="Top" Width="37" StrokeThickness="0.5"/>
+			<Path Data="M70,54.833 L419.00573,54.833" Height="0.5" Margin="59.5,62.851,190,0" Stretch="Fill" Stroke="Black" StrokeThickness="0.5" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, GridBox"/>
+			<TextBlock x:Name="Device_Manager_Title" Height="47" Margin="78,18.333,251,0" TextWrapping="Wrap" Text="Device Manager" VerticalAlignment="Top" FontSize="32" FontFamily="Segoe UI Light"/>
+			<Button x:Name="Device_Manager_Return" Content="" Height="26.073" Margin="458.578,0,51.143,25.167" Style="{DynamicResource ReturnButton}" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox" MouseEnter="Device_Manager_Return_MouseEnter" MouseLeave="Device_Manager_Return_MouseLeave" Click="Device_Manager_Return_Click"/>
+			<Button x:Name="Update_Server" Content="Update Server" HorizontalAlignment="Right" Height="34.96" Margin="0,0,30.364,99.24" VerticalAlignment="Bottom" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Click="Update_Server_Click"/>
+			<Button x:Name="Sync_To_Server" Content="Sync Server" HorizontalAlignment="Right" Height="34.96" Margin="0,0,30.364,60.28" VerticalAlignment="Bottom" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Click="Sync_To_Server_Click"/>
+		</Grid>
+        <Grid x:Name="Product_Manager" Margin="239.794,124.167,198,109.96" d:IsHidden="True">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0*"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Image x:Name="Product_Manager_Return" Margin="-16.587,0,0,-10.5" Source="Graphic_SubMenu_background.gif" Stretch="Fill" Grid.ColumnSpan="2" Opacity="0.68"/>
+			<ListBox x:Name="ProductListView" Margin="19,127.999,0,0" Height="195.801" VerticalAlignment="Top" Grid.Column="1" d:LayoutOverrides="GridBox" HorizontalAlignment="Left" Width="372" FontSize="13.333" FontFamily="Segoe UI Light" Opacity="0.8"/>
+			<Button Content="Today" Grid.Column="1" Margin="406.539,288.8,26.794,0" VerticalAlignment="Top" Click="GetProductSoldToday" Height="35" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}"/>
+			<Button Content="Category" Grid.Column="1" Margin="406.539,0,26.794,81.073" VerticalAlignment="Bottom" Click="GetProductByCategory" Height="35" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}"/>
+			<Button Content="Manufacturer" Grid.Column="1" Margin="406.539,0,26.794,120.073" Click="GetProductByManufacturer" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Height="39" VerticalAlignment="Bottom"/>
+			<Button Content="Day" Grid.Column="1" Margin="406.539,163.8,26.794,163.073" Click="GetProductSoldByDay" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}"/>
+			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="19,84.539,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
+			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="119,84.539,0,0" VerticalAlignment="Top" Width="121" Click="GetCategoryList" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
+			<Button Content="Get Manufacturer" Grid.Column="1" Margin="244,84.539,171.206,0" VerticalAlignment="Top" Click="GetManufacturerList" d:LayoutOverrides="HorizontalAlignment" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
+			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,131.999,26.794,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="128.873" Text="DDMMYYYY" FontSize="13.333" FontFamily="Segoe UI Light" Opacity="0.8"/>
+			<Label Content="Get Products By:" Grid.Column="1" HorizontalAlignment="Right" Height="33.96" Margin="0,88.039,33.843,0" VerticalAlignment="Top" Width="113.824" FontFamily="Segoe UI Semibold" FontSize="13.333"/>
+			<Ellipse Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="25,32.833,0,0" Stroke="Black" VerticalAlignment="Top" Width="37" StrokeThickness="0.5"/>
+			<Path Grid.Column="1" Data="M70,54.833 L419.00573,54.833" Height="0.5" Margin="59.5,62.851,178.706,0" Stretch="Fill" Stroke="Black" StrokeThickness="0.5" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, GridBox"/>
+			<TextBlock x:Name="Product_Manager_Title" Grid.Column="1" Height="47" Margin="78,18.333,239.706,0" TextWrapping="Wrap" Text="Product Manager" VerticalAlignment="Top" FontSize="32" FontFamily="Segoe UI Light"/>
+			<Button x:Name="Product_Manager_Return1" Content="" Grid.Column="1" Height="26.073" Margin="431.927,0,66.5,4" Style="{DynamicResource ReturnButton}" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox" MouseEnter="Product_Manager_Return1_MouseEnter" MouseLeave="Product_Manager_Return1_MouseLeave" Click="Product_Manager_Return1_Click"/>
+		</Grid>
+        <Grid x:Name="Login" Margin="228.5,90.167,159.5,73.793" d:IsHidden="True">
+        	<Image Margin="119,76,135.71,175.235" Source="Graphic_Login.gif" Stretch="Fill"/>
+        	<Image Margin="119,0,135.71,-33.184" Source="Graphic_Login_reflection.gif" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="184.805" VerticalAlignment="Bottom" Opacity="0.25">
+        		<Image.RenderTransform>
+        			<TransformGroup>
+        				<ScaleTransform ScaleY="-1"/>
+        				<SkewTransform/>
+        				<RotateTransform/>
+        				<TranslateTransform/>
+        			</TransformGroup>
+        		</Image.RenderTransform>
+        	</Image>
+        	<Label Content="Login" HorizontalAlignment="Left" Height="56" Margin="151.5,80,0,0" VerticalAlignment="Top" Width="105.5" FontSize="34.667" FontFamily="Segoe UI Semibold" Foreground="White"/>
+        	<TextBox x:Name="Login_Username" Height="26" Margin="221,152.833,215.215,0" TextWrapping="Wrap" Text="Guest" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Light" KeyDown="Login_Username_KeyDown" GotFocus="Login_Username_GotFocus" LostFocus="Login_Username_LostFocus"/>
+        	<PasswordBox x:Name="Login_Password" Margin="216.715,195.64,219.5,214.207" FontSize="16" FontFamily="Segoe UI Light" Password="12345678" KeyDown="Login_Password_KeyDown" GotFocus="Login_Password_GotFocus" LostFocus="Login_Password_LostFocus"/>
+        	<Label Content="Username" HorizontalAlignment="Left" Height="24" Margin="144.5,152.026,0,0" VerticalAlignment="Top" Width="69"/>
+        	<Label Content="Password" HorizontalAlignment="Left" Margin="146.5,194.833,0,210.207" Width="72"/>
+        	<TextBlock x:Name="Login_Invalid" Height="15.5" Margin="243,0,244.5,191.207" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="10.667" FontFamily="Segoe UI Light"/>
+        </Grid>
+        <Grid x:Name="Main_Menu" Margin="176,40,198,109.96" d:IsHidden="True">
+        	<Image x:Name="Main_Menu_Circle_1" HorizontalAlignment="Left" Margin="117,139,0,0" Source="Graphic_Menu_button.gif" Stretch="Fill" Width="62" Height="62" VerticalAlignment="Top"/>
+        	<Image x:Name="Main_Menu_Circle_2" Margin="198.5,0,0,139.04" Source="Graphic_Menu_button.gif" Stretch="Fill" HorizontalAlignment="Left" Height="62" VerticalAlignment="Bottom" Width="62"/>
+        	<Button x:Name="Main_Menu_Product_Manager" Content="" Height="72" Margin="205.5,139,34.5,0" Style="{DynamicResource Main Menu Product Manager}" VerticalAlignment="Top" MouseEnter="Main_Menu_Product_Manager_MouseEnter" MouseLeave="Main_Menu_Product_Manager_MouseLeave" Click="Main_Menu_Product_Manager_Click"/>
+        	<Button x:Name="Main_Menu_Device_Manager" Content="" Height="72" Margin="283,0,-33,129.54" Style="{DynamicResource Main Menu Device Manager}" VerticalAlignment="Bottom" MouseEnter="Main_Menu_Device_Manager_MouseEnter" MouseLeave="Main_Menu_Device_Manager_MouseLeave" Click="Main_Menu_Device_Manager_Click"/>
+        	<Ellipse HorizontalAlignment="Left" Height="55.5" Margin="60.5,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="55.5"/>
+        	<Path Data="M118,52 L504.09066,52" Height="1" Margin="114,60,124.909,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top"/>
+        	<TextBlock x:Name="Main_Menu_TItle" Height="69.5" Margin="134,-11.5,138.909,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" FontSize="53.333" FontFamily="Segoe UI Light" Foreground="#FFFBA439"/>
+        	<Path Data="M985,498 L783.96099,498" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="1" Margin="0,0,-182,-27.046" Stretch="Fill" Stroke="Black" VerticalAlignment="Bottom" Width="167.372"/>
+        	<Button x:Name="Main_Menue_Logout" Content="" HorizontalAlignment="Right" Height="52.04" Margin="0,0,-146.549,-32.96" Style="{DynamicResource Main Menu Logout}" VerticalAlignment="Bottom" Width="112.539" Click="Main_Menue_Logout_Click"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Right" Height="88.167" Margin="0,24.613,119,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142.5" FontSize="64"><Run Text="N"/><Run Foreground="#FFFBA439" Text="U"/><Run Text="S"/></TextBlock>
     </Grid>
 </Window>

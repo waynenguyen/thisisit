@@ -32,11 +32,7 @@ F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.read.1.
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.exe
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.pdb
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data.dll
-D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.exe
-D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.pdb
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
-F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data
 D:\Dropbox\thisisit\CEGMarket\bin\Debug\CEGMarket.exe
 D:\Dropbox\thisisit\CEGMarket\bin\Debug\CEGMarket.pdb
 D:\Dropbox\thisisit\CEGMarket\bin\Debug\mysql.data.dll
@@ -53,3 +49,115 @@ D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.g.resources
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\ResolveAssemblyReference.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\MainWindow.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\Simple Styles.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\App.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\MainWindow.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\App.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\CEGMarket.g.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\CEGMarket.exe.config
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\mysql.data.dll
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy2\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\CEGMarket.exe.config
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\mysql.data.dll
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\ResolveAssemblyReference.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\MainWindow.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\Simple Styles.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\App.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\MainWindow.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\App.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket.g.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl1.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl2.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl3.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl1.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl2.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\UserControl3.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.lref
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\GenerateResource.read.0.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy3\CEGMarket\obj\Debug\GenerateResource.write.0.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\CEGMarket.exe.config
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\ResolveAssemblyReference.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\Simple Styles.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl1.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl2.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl3.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\App.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\MainWindow.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl1.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl2.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl3.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\App.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.cache
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.lref
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\CEGMarket.exe
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\CEGMarket.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\mysql.data.dll
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\MainWindow.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket.g.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\GenerateResource.read.0.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\GenerateResource.write.0.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl4.baml
+D:\Programs\Utility\Dropbox\Shared\CG3002 Group\Software Application\v0.1.4- Copy4\CEGMarket\obj\Debug\UserControl4.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\CEGMarket.exe.config
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket.pdb
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\CEGMarket.exe
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\CEGMarket.pdb
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\mysql.data.dll
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\Simple Styles.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl1.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl2.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl3.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl4.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\App.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\MainWindow.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl1.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl2.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl3.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\UserControl4.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\App.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.cache
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.lref
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\MainWindow.baml
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket.g.resources
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.read.0.tlog
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.write.0.tlog
+D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
