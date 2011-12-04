@@ -32,8 +32,30 @@ F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.read.1.
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.exe
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.pdb
+<<<<<<< HEAD
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data.dll
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.exe
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.pdb
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+=======
+F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\CEGMarket.exe
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\CEGMarket.pdb
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\mysql.data.dll
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
+D:\Dropbox\thisisit\CEGMarket\bin\Debug\Newtonsoft.Json.xml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\MainWindow.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\Simple Styles.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\App.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\MainWindow.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\App.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.cache
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.g.resources
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.Properties.Resources.resources
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.exe
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.pdb
+>>>>>>> 3388da58717ef1b3f48d34c5eb7a32d9b315be6c

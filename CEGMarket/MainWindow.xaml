@@ -24,6 +24,18 @@
         			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="110,8.88,0,0" VerticalAlignment="Top" Width="96" Click="GetCategoryList"/>
         			<Button Content="Get Manufacturer" Grid.Column="1" Margin="210,8.88,296,0" VerticalAlignment="Top" Click="GetManufacturerList"/>
         			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,45.96,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="103" Text="DDMMYYYY"/>
+        			<ListView Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="110,0,0,77" VerticalAlignment="Bottom" Width="100">
+        				<ListView.View>
+        					<GridView>
+          <GridViewColumn Width="140" Header="Game Name" 
+             DisplayMemberBinding="{Binding GameName}"  />
+          <GridViewColumn Width="140" Header="Creator"  
+             DisplayMemberBinding="{Binding Creator}" />
+          <GridViewColumn Width="140" Header="Publisher" 
+             DisplayMemberBinding="{Binding Publisher}" />
+        </GridView>
+        				</ListView.View>
+        			</ListView>
         		</Grid>
         	</TabItem>
         	<TabItem Header="Serial Connection" Style="{DynamicResource SimpleTabItem}">
