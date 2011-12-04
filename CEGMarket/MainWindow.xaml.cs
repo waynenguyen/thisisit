@@ -71,6 +71,7 @@ namespace CEGMarket
 
             //HQServerInterface.sendTodayReport();
             //HQServerInterface.sync();
+
             //SerialConnection.stringToByte("ngotuanvu");
             //Transaction tempTransaction = new Transaction();
             //string barcode = "123445";
