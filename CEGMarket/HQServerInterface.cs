@@ -39,7 +39,7 @@ namespace CEGMarket
             }
             if (todayReport.Count == 0) return;
             dataSender dataSend = new dataSender();
-            dataSend.storeId = "11001";
+            dataSend.storeId = "46912";
             dataSend.data = finalReport;
             dataSend.time = DateTime.Now.ToString();
             System.Web.Script.Serialization.JavaScriptSerializer oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
