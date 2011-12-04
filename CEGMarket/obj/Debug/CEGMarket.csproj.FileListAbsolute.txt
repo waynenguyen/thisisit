@@ -33,11 +33,7 @@ F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\obj\Debug\GenerateResource.write.1
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.exe
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\CEGMarket.pdb
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\mysql.data.dll
-<<<<<<< HEAD
->>>>>>> 7c4586c66ef01b2d612f6d76ca40d8d961689ee1
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.exe
 D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket.pdb
-=======
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.pdb
 F:\Sem1-2011\CG3002\CEGMarket v0.01\CEGMarket\bin\Debug\Newtonsoft.Json.xml
->>>>>>> 0cef50b4b83963f952d6bb39ab65554f7e1d42ca
