@@ -58,11 +58,45 @@ namespace CEGMarket
             catch { };
             // update again
 
+            //HTTPGet req = new HTTPGet();
+            //string reqString = HQ_updateURL + "?id=11001&from=0&to=100";
+            //req.Request(reqString);
+            //Console.WriteLine(req.StatusLine);
+            //Console.WriteLine(req.ResponseTime);
+
+            LocalDBInterface.reset();
             HTTPGet req = new HTTPGet();
-            string reqString = HQ_updateURL + "?id=11001&from=0&to=100";
-            req.Request(reqString);
-            Console.WriteLine(req.StatusLine);
-            Console.WriteLine(req.ResponseTime);
+            List<Product> listP = new List<Product>();
+            string syncURL = "http://cegmarket.appspot.com/store/update?id=46912&";
+            int start = 0, end = 10000;
+
+            while (true)
+            {
+                string fromString = "from=";
+                string toString = "to=";
+                fromString = fromString + start.ToString() + "&";
+                toString = toString + end.ToString();
+                req.Request(syncURL+fromString+toString);
+                if (req.StatusCode == 204) break;
+                start = end;
+                end = end + 10000;
+                Console.WriteLine(req.StatusLine);
+                Console.WriteLine(req.ResponseTime);                
+                //Json.JsonArray data = JsonParser.Deserialize(req.ResponseBody);
+                //System.Collections.IEnumerator ite = data.GetEnumerator();
+                string jsonString = req.ResponseBody;
+                jsonString = jsonString.Replace("id", "barcode");
+                jsonString = jsonString.Replace("brand", "manufacturer");
+                jsonString = jsonString.Replace("transistNum", "number_in_stock");
+                jsonString = jsonString.Replace("transistPrice", "price");
+
+                dynamic deserializedProduct = (List<Product>)JsonConvert.DeserializeObject<List<Product>>(jsonString);
+                listP.AddRange(deserializedProduct);
+            }
+            LocalDBInterface.addListProduct(listP);
+        
+
+
 
 
 
@@ -91,7 +125,7 @@ namespace CEGMarket
             LocalDBInterface.reset();
             HTTPGet req = new HTTPGet();
             List<Product> listP = new List<Product>();
-            string syncURL = "http://cegmarket.appspot.com/store/sync?id=11001&";
+            string syncURL = "http://cegmarket.appspot.com/store/sync?id=46912&";
             int start = 0, end = 10000;
 
             while (true)
