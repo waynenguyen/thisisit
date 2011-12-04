@@ -103,7 +103,19 @@ namespace Transaction_Class
         {
             Dictionary<int, double> amountPrice = new Dictionary<int, double>();
             amountPrice.Add(amount, totalPrice);
-            _shopping_bag.Add(productId, amountPrice);
+            if (!_shopping_bag.ContainsKey(productId))
+                _shopping_bag.Add(productId, amountPrice);
+            else
+            {
+                amountPrice = new Dictionary<int, double>();
+                amountPrice = _shopping_bag[productId];
+                int oldAmount = amountPrice.ElementAt(0).Key;
+                double oldPrice = amountPrice.ElementAt(0).Value;                
+                amountPrice = new Dictionary<int, double>();
+                amountPrice.Add(oldAmount+amount, oldPrice+totalPrice);
+                _shopping_bag.Remove(productId);
+                _shopping_bag.Add(productId, amountPrice);
+            }
         }
     }
 }
