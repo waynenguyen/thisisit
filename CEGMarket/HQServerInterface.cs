@@ -64,7 +64,7 @@ namespace CEGMarket
             //Console.WriteLine(req.StatusLine);
             //Console.WriteLine(req.ResponseTime);
 
-            LocalDBInterface.reset();
+            //LocalDBInterface.reset();
             HTTPGet req = new HTTPGet();
             List<Product> listP = new List<Product>();
             string syncURL = "http://cegmarket.appspot.com/store/update?id=46912&";
