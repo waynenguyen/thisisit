@@ -250,6 +250,7 @@ namespace CEGMarket
             if (transaction.getId() != null)
             {
                 query = "SELECT * FROM transaction WHERE id='" + transaction.getId() + "'";
+                command.CommandText = query;
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
