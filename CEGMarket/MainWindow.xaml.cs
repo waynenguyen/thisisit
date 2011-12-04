@@ -936,11 +936,13 @@ namespace CEGMarket
         private void Update_Server_Click(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+			HQServerInterface.sendTodayReport();
         }
 
         private void Sync_To_Server_Click(object sender, System.Windows.RoutedEventArgs e)
         {
         	// TODO: Add event handler implementation here.
+			HQServerInterface.sync();
         }
 
     }

@@ -87,7 +87,7 @@
 
 	<Grid x:Name="LayoutRoot" Width="1000" Height="600">
         <Image Margin="0,-0.667,0,6.917" Source="Graphic_Background_Main.jpg" Stretch="Fill" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave" ContextMenuClosing="Image_ContextMenuClosing"/>
-        <Grid x:Name="Device_Manager" Height="411.04" Margin="228.5,124.167,198,64.793">
+        <Grid x:Name="Device_Manager" Height="411.04" Margin="228.5,124.167,198,64.793" d:IsHidden="True">
 			<Image Margin="-15,-10.5,0,8" Source="Graphic_SubMenu_background.gif" Stretch="Fill" Opacity="0.68"/>
 			<TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Margin="25,102.928,276.687,0" ScrollViewer.HorizontalScrollBarVisibility="Auto"
 				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Height="34.96" VerticalAlignment="Top" FontSize="18.667" FontFamily="Segoe UI Light" Opacity="0.8"/>
@@ -108,7 +108,7 @@
 			<Button x:Name="Update_Server" Content="Update Server" HorizontalAlignment="Right" Height="34.96" Margin="0,0,30.364,99.24" VerticalAlignment="Bottom" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Click="Update_Server_Click"/>
 			<Button x:Name="Sync_To_Server" Content="Sync Server" HorizontalAlignment="Right" Height="34.96" Margin="0,0,30.364,60.28" VerticalAlignment="Bottom" Width="102.136" FontSize="18.667" FontFamily="Segoe UI Light" Background="{x:Null}" Click="Sync_To_Server_Click"/>
 		</Grid>
-        <Grid x:Name="Product_Manager" Margin="239.794,124.167,198,109.96" d:IsHidden="True">
+        <Grid x:Name="Product_Manager" Margin="239.794,124.167,198,109.96">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="0*"/>
 				<ColumnDefinition/>
@@ -122,7 +122,7 @@
 			<ComboBox x:Name="CatManListBox" Grid.Column="1" Margin="19,84.539,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="96" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
 			<Button Content="Get Category" Grid.Column="1" HorizontalAlignment="Left" Margin="119,84.539,0,0" VerticalAlignment="Top" Width="121" Click="GetCategoryList" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
 			<Button Content="Get Manufacturer" Grid.Column="1" Margin="244,84.539,171.206,0" VerticalAlignment="Top" Click="GetManufacturerList" d:LayoutOverrides="HorizontalAlignment" Height="30.96" Background="{x:Null}" FontSize="18.667" FontFamily="Segoe UI Light"/>
-			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,131.999,26.794,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="128.873" Text="DDMMYYYY" FontSize="13.333" FontFamily="Segoe UI Light" Opacity="0.8"/>
+			<TextBox x:Name="DateTB" Grid.Column="1" HorizontalAlignment="Right" Margin="0,131.999,26.794,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="128.873" Text="YYYY-MM-DD" FontSize="13.333" FontFamily="Segoe UI Light" Opacity="0.8"/>
 			<Label Content="Get Products By:" Grid.Column="1" HorizontalAlignment="Right" Height="33.96" Margin="0,88.039,33.843,0" VerticalAlignment="Top" Width="113.824" FontFamily="Segoe UI Semibold" FontSize="13.333"/>
 			<Ellipse Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="25,32.833,0,0" Stroke="Black" VerticalAlignment="Top" Width="37" StrokeThickness="0.5"/>
 			<Path Grid.Column="1" Data="M70,54.833 L419.00573,54.833" Height="0.5" Margin="59.5,62.851,178.706,0" Stretch="Fill" Stroke="Black" StrokeThickness="0.5" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, GridBox"/>

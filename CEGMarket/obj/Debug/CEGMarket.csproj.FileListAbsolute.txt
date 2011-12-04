@@ -161,3 +161,15 @@ D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEG
 D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.read.1.tlog
 D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.write.0.tlog
 D:\Dropbox\CG3002 Group\Software Application\v0.1.4- Copy4 - testintegration\CEGMarket\obj\Debug\GenerateResource.write.1.tlog
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl1.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl2.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl3.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl4.baml
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl1.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl2.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl3.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\UserControl4.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\CEGMarket_MarkupCompile.lref
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.read.0.tlog
+D:\Dropbox\thisisit\CEGMarket\obj\Debug\GenerateResource.write.0.tlog
