@@ -43,6 +43,7 @@ namespace Transaction_Class
         // getters
         public String getId()
         {
+            if (_id == null) return null;
             for (int i = 0; i < 6 - _id.Length; i++)
             {
                 _id = "0" + _id;
