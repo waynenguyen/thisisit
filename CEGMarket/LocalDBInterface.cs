@@ -250,6 +250,7 @@ namespace CEGMarket
             if (transaction.getId() != null)
             {
                 query = "SELECT * FROM transaction WHERE id='" + transaction.getId() + "'";
+                command.CommandText = query;
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -304,11 +305,26 @@ namespace CEGMarket
             Transaction transaction = null;
             while (reader.Read())
             {
-                double money_receive = Double.Parse(reader.GetValue(1).ToString());
-                double money_change = Double.Parse(reader.GetValue(2).ToString());
+                double money_receive = 0;
+                try
+                {
+                    money_receive = Double.Parse(reader.GetValue(1).ToString());
+                }
+                catch { };
+                double money_change = 0;
+                try
+                {
+                    money_change = Double.Parse(reader.GetValue(2).ToString());
+                }
+                catch { };
                 string date = reader.GetValue(3).ToString();
                 string member_id = reader.GetValue(4).ToString();
-                double total_price = Double.Parse(reader.GetValue(5).ToString());
+                double total_price = 0;
+                try
+                {
+                    total_price = Double.Parse(reader.GetValue(5).ToString());
+                }
+                catch { };
                 transaction = new Transaction(transactionId, date, money_receive, money_change, total_price);
             }
             reader.Close();
